@@ -1,17 +1,9 @@
-package labs.lab2_3;/*
-Виконав програміст Савченко Максим
-Студент ІН-22-1
-ООП на мові Java
-Лабораторна робота №2
-2025-03-11 14:00+02:00
-1 година
-Програма запитує значення від -999 до 999 та виводить його в буквений формат
-Використання штучного інтелекту: Генерування значень для Enum, довідка для класу StringBuilder та типу даних enum
-*/
+package labs.lab2_3;
 
 import java.util.Scanner;
+//import numberToLatters.*;
 
-public class lab2 {
+public class lab2_3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
