@@ -1,4 +1,4 @@
-/*
+package labs.lab2_3;/*
 Виконав програміст Савченко Максим
 Студент ІН-22-1
 ООП на мові Java
@@ -10,9 +10,8 @@
 */
 
 import java.util.Scanner;
-import numberToLatters.*;
 
-public class Lab2 {
+public class lab2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -36,18 +35,18 @@ public class Lab2 {
             }
 
             if (number >= 100) {
-                result.append(Hundreds.getNumberWord(number)).append(" ");
+                result.append(numberToLatters.Hundreds.getNumberWord(number)).append(" ");
                 number %= 100;
             }
 
             if (number >= 10 && number <= 19) {
-                result.append(Teens.getNumberWord(number)).append(" ");
+                result.append(numberToLatters.Teens.getNumberWord(number)).append(" ");
             } else {
                 if (number >= 20) {
-                    result.append(Tens.getNumberWord(number)).append(" ");
+                    result.append(numberToLatters.Tens.getNumberWord(number)).append(" ");
                 }
                 if (number % 10 != 0) {
-                    result.append(Units.getNumberWord(number));
+                    result.append(numberToLatters.Units.getNumberWord(number));
                 }
             }
         }

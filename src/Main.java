@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import labs.lab1.*;
+import labs.lab2_3.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +10,8 @@ public class Main {
         int labNumber = scanner.nextInt();
 
         switch (labNumber) {
-            case 1 -> Lab1.main(null);
+            case 1 -> lab1.main(null);
+            case 2 -> lab2.main(null);
         }
     }
 }
