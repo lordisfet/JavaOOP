@@ -1,34 +1,21 @@
-/*
- * Виконав:       Савченко Максим
- * Група:         ІН-22-1
- * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №2
- * Дата:          2025-03-11 14:00 (UTC+2)
- * Час виконання: 1 година
- *
- * Опис:
- * Програма запитує значення від -999 до 999 та виводить його у буквений формат.
- *
- * Використання штучного інтелекту:
- * - Генерування значень для Enum
- * - Довідка для класу StringBuilder
- * - Довідка для типу даних enum
- */
-
+import java.io.IOException;
 import java.util.Scanner;
+
 import labs.lab1.*;
 import labs.lab2_3.*;
+import labs.lab4.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the number of lab: ");
         int labNumber = scanner.nextInt();
 
         switch (labNumber) {
-            case 1 -> lab1.main(null);
-            case 2, 3 -> lab2_3.main(null);
+            case 1 -> Lab1.main(null);
+            case 2, 3 -> Lab2_3.main(null);
+            case 4 -> Lab4.main(null);
         }
     }
 }
