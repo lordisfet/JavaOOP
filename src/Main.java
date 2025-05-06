@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import labs.lab1.*;
 import labs.lab2_3.*;
-import labs.lab4.*;
+import labs.lab8.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -15,7 +15,7 @@ public class Main {
         switch (labNumber) {
             case 1 -> Lab1.main(null);
             case 2, 3 -> Lab2_3.main(null);
-            case 4 -> Lab4.main(null);
+            case 4, 5 -> Lab8.main(null);
         }
     }
 }
