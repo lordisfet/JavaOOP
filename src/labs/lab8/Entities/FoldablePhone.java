@@ -41,7 +41,11 @@ public class FoldablePhone extends SmartPhone {
      */
     @Override
     public String toString() {
-        return super.toString() + ", foldableScreens: " + foldableScreens;
+        return super.toString() + "foldableScreens:" + foldableScreens + "\n";
+    }
+
+    public String toStringToFile() {
+        return super.toString() + "foldableScreens: " + foldableScreens + ';';
     }
 
     /**

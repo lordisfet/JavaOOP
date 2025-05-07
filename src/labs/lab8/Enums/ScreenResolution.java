@@ -49,6 +49,6 @@ public enum ScreenResolution {
      */
     @Override
     public String toString() {
-        return name() + " (" + resolution + ")";
+        return name();
     }
 }

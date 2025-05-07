@@ -42,7 +42,14 @@ public class GamingPhone extends SmartPhone {
     @Override
     public String toString() {
         // Call toString() from the parent class and add the active cooling information
-        return super.toString() + ", GamingCooling: " + (activeCooling ? "Yes" : "No");
+        return super.toString() + "GamingCooling:" + "\n" +
+                (activeCooling ? "Yes" : "No") + "\n";
+    }
+
+    public String toStringToFile() {
+        // Call toString() from the parent class and add the active cooling information
+        return super.toString() + "GamingCooling:" + ';' +
+                (activeCooling ? "Yes" : "No") + ';';
     }
 
     /**

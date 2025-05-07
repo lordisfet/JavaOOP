@@ -21,35 +21,35 @@ public class Phone {
     /**
      * Constructs a new {@code Phone} object with the specified parameters.
      *
-     * @param type the type of the phone (e.g., smartphone, feature phone)
-     * @param brand the brand of the phone (e.g., Apple, Samsung)
-     * @param model the model of the phone (e.g., iPhone 12)
-     * @param price the price of the phone in USD
-     * @param ramAmount the amount of RAM in the phone in GB
-     * @param romAmount the amount of ROM in the phone in GB
+     * @param type             the type of the phone (e.g., smartphone, feature phone)
+     * @param brand            the brand of the phone (e.g., Apple, Samsung)
+     * @param model            the model of the phone (e.g., iPhone 12)
+     * @param price            the price of the phone in USD
+     * @param ramAmount        the amount of RAM in the phone in GB
+     * @param romAmount        the amount of ROM in the phone in GB
      * @param screenResolution the screen resolution of the phone
      * @throws IllegalArgumentException if any of the parameters are invalid (e.g., null or negative values)
      */
     public Phone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
-        if (type == null || type.isEmpty()){
+        if (type == null || type.isEmpty()) {
             throw new IllegalArgumentException("Type can't be empty or null");
         }
-        if (brand == null || brand.isEmpty()){
+        if (brand == null || brand.isEmpty()) {
             throw new IllegalArgumentException("Brand can't be empty or null");
         }
-        if (model == null || model.isEmpty()){
+        if (model == null || model.isEmpty()) {
             throw new IllegalArgumentException("Model can't be empty or null");
         }
-        if (price < 0){
+        if (price < 0) {
             throw new IllegalArgumentException("Price can't be less than 0");
         }
-        if (ramAmount < 0){
+        if (ramAmount < 0) {
             throw new IllegalArgumentException("RAM amount can't be less than 0");
         }
-        if (romAmount < 0){
+        if (romAmount < 0) {
             throw new IllegalArgumentException("ROM amount can't be less than 0");
         }
-        if (screenResolution == null){
+        if (screenResolution == null) {
             throw new IllegalArgumentException("ScreenResolution can't be null");
         }
         this.type = type;
@@ -77,6 +77,7 @@ public class Phone {
 
     /**
      * Gets the type of the phone.
+     *
      * @return the phone type
      */
     public String getType() {
@@ -85,6 +86,7 @@ public class Phone {
 
     /**
      * Gets the brand of the phone.
+     *
      * @return the phone brand
      */
     public String getBrand() {
@@ -93,6 +95,7 @@ public class Phone {
 
     /**
      * Gets the model of the phone.
+     *
      * @return the phone model
      */
     public String getModel() {
@@ -101,6 +104,7 @@ public class Phone {
 
     /**
      * Gets the price of the phone.
+     *
      * @return the phone price in USD
      */
     public double getPrice() {
@@ -109,6 +113,7 @@ public class Phone {
 
     /**
      * Gets the amount of RAM in the phone.
+     *
      * @return the RAM amount in GB
      */
     public int getRamAmount() {
@@ -117,6 +122,7 @@ public class Phone {
 
     /**
      * Gets the amount of ROM (internal storage) in the phone.
+     *
      * @return the ROM amount in GB
      */
     public int getRomAmount() {
@@ -125,6 +131,7 @@ public class Phone {
 
     /**
      * Gets the screen resolution of the phone.
+     *
      * @return the screen resolution
      */
     public ScreenResolution getScreenResolution() {
@@ -133,6 +140,7 @@ public class Phone {
 
     /**
      * Sets the type of the phone.
+     *
      * @param type the phone type
      * @throws IllegalArgumentException if the type is null or empty
      */
@@ -145,6 +153,7 @@ public class Phone {
 
     /**
      * Sets the brand of the phone.
+     *
      * @param brand the phone brand
      * @throws IllegalArgumentException if the brand is null or empty
      */
@@ -157,6 +166,7 @@ public class Phone {
 
     /**
      * Sets the model of the phone.
+     *
      * @param model the phone model
      * @throws IllegalArgumentException if the model is null or empty
      */
@@ -169,6 +179,7 @@ public class Phone {
 
     /**
      * Sets the price of the phone.
+     *
      * @param price the phone price in USD
      * @throws IllegalArgumentException if the price is less than 0
      */
@@ -181,6 +192,7 @@ public class Phone {
 
     /**
      * Sets the amount of RAM in the phone.
+     *
      * @param ramAmount the amount of RAM in GB
      * @throws IllegalArgumentException if the RAM amount is less than 0
      */
@@ -193,6 +205,7 @@ public class Phone {
 
     /**
      * Sets the amount of ROM (internal storage) in the phone.
+     *
      * @param romAmount the amount of ROM in GB
      * @throws IllegalArgumentException if the ROM amount is less than 0
      */
@@ -205,6 +218,7 @@ public class Phone {
 
     /**
      * Sets the screen resolution of the phone.
+     *
      * @param screenResolution the screen resolution
      * @throws IllegalArgumentException if the screen resolution is null
      */
@@ -220,17 +234,26 @@ public class Phone {
      *
      * @return a string representation of the phone's details in JSON format
      */
+    
     @Override
     public String toString() {
-        return "{\n" +
-                "  \"type\": \"" + type + "\",\n" +
-                "  \"brand\": \"" + brand + "\",\n" +
-                "  \"model\": \"" + model + "\",\n" +
-                "  \"price\": " + price + " USD\",\n" +
-                "  \"ramAmount\": " + ramAmount + ",\n" +
-                "  \"romAmount\": " + romAmount + ",\n" +
-                "  \"screenResolution\": \"" + screenResolution + "\"\n" +
-                "}";
+        return "type:" + type + "\n" +
+                "brand:" + brand + "\n" +
+                "model:" + model + "\n" +
+                "price:" + price + "\n" +
+                "ramAmount:" + ramAmount + "\n" +
+                "romAmount:" + romAmount + "\n" +
+                "screenResolution:" + screenResolution + "\n";
+    }
+
+    public String toStringToFile() {
+        return "type:" + type + ';' +
+                "brand:" + brand + ';' +
+                "model:" + model + ';' +
+                "price:" + price + ';' +
+                "ramAmount:" + ramAmount + ';' +
+                "romAmount:" + romAmount + ';' +
+                "screenResolution:" + screenResolution + ';';
     }
 
     /**

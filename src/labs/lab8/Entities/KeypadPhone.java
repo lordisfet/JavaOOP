@@ -104,17 +104,13 @@ public class KeypadPhone extends Phone {
      */
     @Override
     public String toString() {
-        return "{\n" +
-                "  \"type\": \"" + getType() + "\",\n" +
-                "  \"brand\": \"" + getBrand() + "\",\n" +
-                "  \"model\": \"" + getModel() + "\",\n" +
-                "  \"price\": " + getPrice() + " USD\",\n" +
-                "  \"ramAmount\": " + getRamAmount() + ",\n" +
-                "  \"romAmount\": " + getRomAmount() + ",\n" +
-                "  \"screenResolution\": \"" + getScreenResolution() + "\",\n" +
-                "  \"buttonCount\": " + buttonCount + ",\n" +
-                "  \"supportedBandCount\": " + supportedBandCount + "\n" +
-                "}";
+        return super.toString() + "buttonCount:" + buttonCount + "\n" +
+                "supportedBandCount:" + supportedBandCount + "\n";
+    }
+
+    public String toStringToFile() {
+        return super.toStringToFile() + "buttonCount:" + buttonCount + ';' +
+                "supportedBandCount:" + supportedBandCount + ';';
     }
 
     /**

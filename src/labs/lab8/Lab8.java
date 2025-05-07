@@ -150,7 +150,7 @@ public class Lab8 {
     public static String setTypeWithValidation() {
         System.out.print("\t1. Phone \n\t2. SmartPhone " +
                 "\n\t3. KeypadPhone \n\t4. GamingPhone " +
-                "\n\t5. FoldablePhone \n\t6. Exit from create phone\n Choose type:");
+                "\n\t5. FoldablePhone \n\t6. Exit from create phone\nChoose type: ");
         int input = setIntWithValidation();
 
         while (input < 1 || input > 6) {
