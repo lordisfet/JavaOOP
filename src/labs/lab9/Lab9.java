@@ -18,16 +18,26 @@ package labs.lab9;
 import labs.lab8.Entities.*;
 import labs.lab8.Enums.ScreenResolution;
 import labs.lab8.Exceptions.NoPhonesAvailableException;
+import labs.lab9.Entities.InitialFile;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static labs.lab9.Entities.Validator.*;
 
 public class Lab9 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Phone> phones = new ArrayList<Phone>();
+        ArrayList<Phone> phones = new ArrayList<>();
         int action;
+        String fileName = "src/labs/lab9/Data/input.txt";
+        try {
+            InitialFile file = new InitialFile(fileName);
+            System.out.println(file.readData());
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
 
         do {
             System.out.println("\nMENU");
@@ -147,28 +157,6 @@ public class Lab9 {
         }
     }
 
-    public static String setTypeWithValidation() {
-        System.out.print("\t1. Phone \n\t2. SmartPhone " +
-                "\n\t3. KeypadPhone \n\t4. GamingPhone " +
-                "\n\t5. FoldablePhone \n\t6. Exit from create phone\nChoose type: ");
-        int input = setIntWithValidation();
-
-        while (input < 1 || input > 6) {
-            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
-            input = setIntWithValidation();
-        }
-
-        return switch (input) {
-            case 1 -> "Phone";
-            case 2 -> "SmartPhone";
-            case 3 -> "KeypadPhone";
-            case 4 -> "GamingPhone";
-            case 5 -> "FoldablePhone";
-            case 6 -> "";
-            default -> throw new IllegalStateException("Unexpected type: " + input);
-        };
-    }
-
     public static GamingPhone addGamingPhone(String type, String brand, String model, double price, int ram, int rom, ScreenResolution res) {
         SmartPhone basePhone = addSmartPhone(type, brand, model, price, ram, rom, res);
 
@@ -193,56 +181,6 @@ public class Lab9 {
         return new FoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution,
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), foldableScreens
         );
-    }
-
-    public static int setIntWithValidation() {
-        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Enter number: ");
-
-        while (!scanner.hasNextInt()) {
-            scanner.next();
-            System.out.print("You need enter integer: ");
-        }
-        return scanner.nextInt();
-    }
-
-    public static double setDoubleWithValidation() {
-        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Enter a decimal number: ");
-
-        while (!scanner.hasNextDouble()) {
-            scanner.next();
-            System.out.print("Invalid input. Enter a decimal number: ");
-        }
-
-        return scanner.nextDouble();
-    }
-
-    public static String setStringWithValidation() {
-        Scanner scanner = new Scanner(System.in);
-        String input;
-
-//        System.out.print("Enter text: ");
-        input = scanner.nextLine().trim();
-
-        while (input.isEmpty()) {
-            System.out.print("Input cannot be empty. Enter text again: ");
-            input = scanner.nextLine().trim();
-        }
-
-        return input;
-    }
-
-    public static ScreenResolution setScrResWithValidation() {
-        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Enter number of screen resolution(1-8): ");
-        int scrResNum = setIntWithValidation();
-        while (scrResNum < 1 || scrResNum > ScreenResolution.values().length) {
-            System.out.print("Number must be in range 1 to 8: ");
-            scrResNum = setIntWithValidation();
-        }
-
-        return ScreenResolution.values()[scrResNum - 1];
     }
 
     public static void showAll(ArrayList<Phone> list) {
