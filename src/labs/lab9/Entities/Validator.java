@@ -1,6 +1,6 @@
 package labs.lab9.Entities;
 
-import labs.lab8.Enums.ScreenResolution;
+import labs.lab9.Enums.ScreenResolution;
 
 import java.util.Scanner;
 
