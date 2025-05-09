@@ -33,13 +33,6 @@ public class Lab9 {
         int action;
         String fileName = "src/labs/lab9/Data/input.txt";
 
-        try {
-            InitialFile file = new InitialFile(fileName);
-            System.out.println(file.readData());
-        } catch (IOException e) {
-            System.out.println("File error: " + e.getMessage());
-        }
-
         do {
             System.out.println("\nMENU");
             System.out.println("1. Create new phone");
@@ -52,7 +45,7 @@ public class Lab9 {
                 case 1 -> {
                     Phone newPhone = factory.createPhoneFromInput();
                     if (newPhone != null) {
-
+                        repository.add(newPhone);
                         System.out.println("\nObj was been added");
                     } else {
                         System.out.println("Returning to menu...");
@@ -61,13 +54,21 @@ public class Lab9 {
                 case 2 -> {
                     try {
                         System.out.println("List of phones: ");
-                        repository.showAll();
+                        for (Phone phone : repository.getAll()) {
+                            System.out.println(phone);
+                        }
                     } catch (Exception e) {
                         System.out.println("Exception: " + e.getMessage());
                     }
                 }
                 case 3 -> {
                     System.out.println("Exiting...");
+                    try {
+                        InitialFile file = new InitialFile(fileName);
+                        file.writeData(repository.getAll());
+                    } catch (IOException e) {
+                        System.out.println("File error: " + e.getMessage());
+                    }
                     return;
                 }
                 default -> System.out.println("Invalid input. Try again.");

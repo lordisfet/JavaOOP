@@ -25,12 +25,20 @@ public class PhoneRepository {
         }
     }
 
-    public void showAll() {
+    public Phone getPhoneByID(int id) {
+        if (id >= phones.size() || id < 0) {
+            throw new IllegalArgumentException("Phone with id = " + id +
+                    " not exist. Size of repository is " + phones.size() + " phone(s)");
+        }
+
+        return phones.get(id);
+    }
+
+    public ArrayList<Phone> getAll() {
         if (phones.isEmpty()) {
             throw new NoPhonesAvailableException("list of phones is empty");
         }
-        for (Phone phone : phones) {
-            System.out.printf(phone + "\n");
-        }
+
+        return phones;
     }
 }

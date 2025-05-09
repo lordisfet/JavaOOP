@@ -29,7 +29,6 @@ public class GamingPhone extends SmartPhone {
      */
     public GamingPhone(String type, String brand, String model, double price, int ram, int rom,
                        ScreenResolution res, int cpuCores, int frontCam, boolean activeCooling) {
-        // Call the constructor of the parent class SmartPhone
         super(type, brand, model, price, ram, rom, res, cpuCores, frontCam);
         this.activeCooling = activeCooling;
     }
@@ -41,13 +40,11 @@ public class GamingPhone extends SmartPhone {
      */
     @Override
     public String toString() {
-        // Call toString() from the parent class and add the active cooling information
-        return super.toString() + "GamingCooling:" + "\n" +
+        return super.toString() + "GamingCooling:" +
                 (activeCooling ? "Yes" : "No") + "\n";
     }
 
     public String toStringToFile() {
-        // Call toString() from the parent class and add the active cooling information
         return super.toString() + "GamingCooling:" + ';' +
                 (activeCooling ? "Yes" : "No") + ';';
     }

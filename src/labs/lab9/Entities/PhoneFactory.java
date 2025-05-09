@@ -48,15 +48,16 @@ public class PhoneFactory {
         ScreenResolution screenResolution = setScrResWithValidation();
 
         return switch (type) {
-            case "SmartPhone" -> addSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "KeypadPhone" -> addKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "GamingPhone" -> addGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "FoldablePhone" -> addFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "Phone" -> new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "GamingPhone" -> createGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "FoldablePhone" -> createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             default -> throw new IllegalArgumentException("Type of phone not exists");
         };
     }
 
-    public SmartPhone addSmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
+    private SmartPhone createSmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter number of CPU cores: ");
         int cpuCores = setIntWithValidation();
         System.out.print("Enter front camera MP: ");
@@ -70,7 +71,7 @@ public class PhoneFactory {
         }
     }
 
-    public KeypadPhone addKeypadPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
+    private KeypadPhone createKeypadPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter Count of buttons: ");
         int buttonCount = setIntWithValidation();
         System.out.print("Enter Count supported bands: ");
@@ -84,8 +85,8 @@ public class PhoneFactory {
         }
     }
 
-    public GamingPhone addGamingPhone(String type, String brand, String model, double price, int ram, int rom, ScreenResolution res) {
-        SmartPhone basePhone = addSmartPhone(type, brand, model, price, ram, rom, res);
+    private GamingPhone createGamingPhone(String type, String brand, String model, double price, int ram, int rom, ScreenResolution res) {
+        SmartPhone basePhone = createSmartPhone(type, brand, model, price, ram, rom, res);
 
         if (basePhone == null) return null;
 
@@ -96,9 +97,9 @@ public class PhoneFactory {
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), activeCooling);
     }
 
-    public FoldablePhone addFoldablePhone(String type, String brand, String model, double price,
+    private FoldablePhone createFoldablePhone(String type, String brand, String model, double price,
                                           int ramAmount, int romAmount, ScreenResolution screenResolution) {
-        SmartPhone basePhone = addSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+        SmartPhone basePhone = createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
 
         if (basePhone == null) return null;
 

@@ -1,2 +1,11 @@
-Hello, World!!!
-Bye, Hell!!!
+type:SmartPhone;brand:Apple;model:Iphone 16;price:1500.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:128;
+type:GamingPhone
+brand:Asus
+model:ROG
+price:1800.0
+ramAmount:24
+romAmount:512
+screenResolution:UHD_4K
+cpuCores:8
+frontCameraMP:64
+GamingCooling:;Yes;

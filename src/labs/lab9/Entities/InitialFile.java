@@ -1,12 +1,14 @@
 package labs.lab9.Entities;
 
+import labs.lab9.Entities.Phones.Phone;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class InitialFile {
     private String fileName;
-    private File inputFile;
+    private File file;
     private static final char fieldSeparator = ';';
     private static final char valueSeparator = ':';
 
@@ -15,7 +17,7 @@ public class InitialFile {
             throw new IllegalArgumentException("File name can`t be empty or null");
         }
         this.fileName = fileName;
-        this.inputFile = new File(fileName);
+        this.file = new File(fileName);
     }
 
     public InitialFile(InitialFile other) {
@@ -24,7 +26,7 @@ public class InitialFile {
         }
 
         this.fileName = other.fileName;
-        this.inputFile = other.inputFile;
+        this.file = other.file;
     }
 
     public String getFileName() {
@@ -35,19 +37,19 @@ public class InitialFile {
         this.fileName = fileName;
     }
 
-    public File getInputFile() {
-        return inputFile;
+    public File getfile() {
+        return file;
     }
 
-    public void setInputFile(File inputFile) {
-        this.inputFile = inputFile;
+    public void setfile(File file) {
+        this.file = file;
     }
 
     @Override
     public String toString() {
         return "InitialFile{" +
                 "fileName='" + fileName + '\'' +
-                ", inputFile=" + inputFile +
+                ", file=" + file +
                 '}';
     }
 
@@ -55,16 +57,16 @@ public class InitialFile {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         InitialFile that = (InitialFile) o;
-        return Objects.equals(fileName, that.fileName) && Objects.equals(inputFile, that.inputFile);
+        return Objects.equals(fileName, that.fileName) && Objects.equals(file, that.file);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fileName, inputFile);
+        return Objects.hash(fileName, file);
     }
 
     public ArrayList<String> readData() throws IOException {
-        try (FileReader reader = new FileReader(inputFile);
+        try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
             ArrayList<String> data = new ArrayList<>();
             String line;
@@ -76,6 +78,15 @@ public class InitialFile {
         }
     }
 
+    public void writeData(ArrayList<Phone> phones) throws IOException {
+        try (FileWriter writer = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+            for (Phone phone : phones) {
+                bufferedWriter.write('\0');
+                bufferedWriter.append(phone.toStringToFile() + '\n');
+            }
+        }
+    }
     /*public ArrayList<Phone> ReadDataFromFile() {
 
     }*/
