@@ -5,9 +5,6 @@ import labs.lab9.Enums.ScreenResolution;
 
 import java.util.Scanner;
 
-import static labs.lab9.Entities.Validator.*;
-import static labs.lab9.Entities.Validator.setIntWithValidation;
-
 public class PhoneFactory {
     private final Scanner scanner = new Scanner(System.in);
 
@@ -22,18 +19,18 @@ public class PhoneFactory {
                 \t5. FoldablePhone\s
                 \t6. Exit from create phone
                 Choose type:\s""");
-        int input = setIntWithValidation();
 
+        int input = setIntWithValidation();
         while (input < 1 || input > 6) {
             System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
             input = setIntWithValidation();
         }
 
-        String type = setTypeWithValidation(input);
+        String type = setTypeWithValidation();
         if (type.isEmpty()) return null; // повернення в головне меню
 
         System.out.print("Enter brand: ");
-        String brand = setStringWithValidation();
+        String brand =  setStringWithValidation();
         System.out.print("Enter model: ");
         String model = setStringWithValidation();
         System.out.print("Enter price: ");
@@ -126,5 +123,73 @@ public class PhoneFactory {
         return new FoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution,
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), foldableScreens
         );
+    }
+
+    public static int setIntWithValidation() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (!scanner.hasNextInt()) {
+            scanner.next();
+            System.out.print("You need enter integer: ");
+        }
+        return scanner.nextInt();
+    }
+
+    public static double setDoubleWithValidation() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (!scanner.hasNextDouble()) {
+            scanner.next();
+            System.out.print("Invalid input. Enter a decimal number: ");
+        }
+
+        return scanner.nextDouble();
+    }
+
+    public static String setStringWithValidation() {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        input = scanner.nextLine().trim();
+
+        while (input.isEmpty()) {
+            System.out.print("Input cannot be empty. Enter text again: ");
+            input = scanner.nextLine().trim();
+        }
+
+        return input;
+    }
+
+    public static ScreenResolution setScrResWithValidation() {
+        Scanner scanner = new Scanner(System.in);
+        int scrResNum = setIntWithValidation();
+        while (scrResNum < 1 || scrResNum > ScreenResolution.values().length) {
+            System.out.print("Number must be in range 1 to 8: ");
+            scrResNum = setIntWithValidation();
+        }
+
+        return ScreenResolution.values()[scrResNum - 1];
+    }
+
+    public static String setTypeWithValidation() {
+        System.out.print("\t1. Phone \n\t2. SmartPhone " +
+                "\n\t3. KeypadPhone \n\t4. GamingPhone " +
+                "\n\t5. FoldablePhone \n\t6. Exit from create phone\nChoose type: ");
+        int input = setIntWithValidation();
+
+        while (input < 1 || input > 6) {
+            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
+            input = setIntWithValidation();
+        }
+
+        return switch (input) {
+            case 1 -> "Phone";
+            case 2 -> "SmartPhone";
+            case 3 -> "KeypadPhone";
+            case 4 -> "GamingPhone";
+            case 5 -> "FoldablePhone";
+            case 6 -> "";
+            default -> throw new IllegalStateException("Unexpected type: " + input);
+        };
     }
 }

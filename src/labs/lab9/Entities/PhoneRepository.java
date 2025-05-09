@@ -10,9 +10,6 @@ import labs.lab9.Entities.Phones.Phone;
 
 import java.util.ArrayList;
 
-import static labs.lab9.Entities.Validator.*;
-import static labs.lab9.Entities.Validator.setIntWithValidation;
-
 public class PhoneRepository {
     private ArrayList<Phone> phones = new ArrayList<>();
 

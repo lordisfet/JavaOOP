@@ -87,7 +87,4 @@ public class InitialFile {
             }
         }
     }
-    /*public ArrayList<Phone> ReadDataFromFile() {
-
-    }*/
 }

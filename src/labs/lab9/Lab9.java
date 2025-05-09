@@ -23,7 +23,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import labs.lab9.Entities.PhoneRepository;
-import labs.lab9.Entities.PhoneRepository.*;
+import labs.lab9.Entities.PhoneFactory;
+
+import static labs.lab9.Entities.PhoneFactory.setIntWithValidation;
 
 public class Lab9 {
     public static void main(String[] args) {
@@ -39,7 +41,7 @@ public class Lab9 {
             System.out.println("2. Show all phones");
             System.out.println("3. Exit");
             System.out.print("\nChoose action: ");
-            action = scanner.nextInt();
+            action = setIntWithValidation();
 
             switch (action) {
                 case 1 -> {
