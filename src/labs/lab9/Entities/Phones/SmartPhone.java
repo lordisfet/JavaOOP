@@ -99,8 +99,8 @@ public class SmartPhone extends Phone {
      */
     @Override
     public String toString() {
-        return super.toString() + "cpuCores:" + cpuCores + "\n"
-                + "frontCameraMP:" + frontCameraMP + "\n";
+        return super.toString() + "cpuCores: " + cpuCores + "\n"
+                + "frontCameraMP: " + frontCameraMP + "\n";
     }
 
     public String toStringToFile() {

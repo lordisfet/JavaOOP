@@ -40,7 +40,7 @@ public class GamingPhone extends SmartPhone {
      */
     @Override
     public String toString() {
-        return super.toString() + "GamingCooling:" +
+        return super.toString() + "GamingCooling: " +
                 (activeCooling ? "Yes" : "No") + "\n";
     }
 

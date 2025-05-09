@@ -237,13 +237,13 @@ public class Phone {
     
     @Override
     public String toString() {
-        return "type:" + type + "\n" +
-                "brand:" + brand + "\n" +
-                "model:" + model + "\n" +
-                "price:" + price + "\n" +
-                "ramAmount:" + ramAmount + "\n" +
-                "romAmount:" + romAmount + "\n" +
-                "screenResolution:" + screenResolution + "\n";
+        return "type: " + type + "\n" +
+                "brand: " + brand + "\n" +
+                "model: " + model + "\n" +
+                "price: " + price + "\n" +
+                "ramAmount: " + ramAmount + "\n" +
+                "romAmount: " + romAmount + "\n" +
+                "screenResolution: " + screenResolution + "\n";
     }
 
     public String toStringToFile() {
