@@ -4,13 +4,15 @@ import labs.lab9.Entities.Phones.Phone;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class InitialFile {
     private String fileName;
     private File file;
-    private static final char fieldSeparator = ';';
-    private static final char valueSeparator = ':';
+    private static final String fieldSeparator = ";";
+    private static final String valueSeparator = ":";
 
     public InitialFile(String fileName) throws FileNotFoundException {
         if (fileName.isEmpty()) {
@@ -65,16 +67,16 @@ public class InitialFile {
         return Objects.hash(fileName, file);
     }
 
-    public ArrayList<String> readData() throws IOException {
+    public ArrayList<Map<String, String>> readData() throws IOException {
         try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
-            ArrayList<String> data = new ArrayList<>();
+            ArrayList<Map<String, String>> listOfAttributes = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                data.add(line);
+                listOfAttributes.add(parsePhoneData(line));
             }
 
-            return data;
+            return listOfAttributes;
         }
     }
 
@@ -86,5 +88,19 @@ public class InitialFile {
                 bufferedWriter.append(phone.toStringToFile() + '\n');
             }
         }
+    }
+
+    private Map<String, String> parsePhoneData(String line) {
+        Map<String, String> attributes = new HashMap<>();
+
+        String[] pairs = line.split(fieldSeparator);
+        for (String pair : pairs) {
+            String[] keyValue = pair.split(valueSeparator);
+            if (keyValue.length == 2) {
+                attributes.put(keyValue[0].trim(), keyValue[1].trim());
+            }
+        }
+
+        return attributes;
     }
 }
