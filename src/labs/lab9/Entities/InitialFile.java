@@ -82,7 +82,7 @@ public class InitialFile {
         try (FileWriter writer = new FileWriter(file);
              BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
             for (Phone phone : phones) {
-                bufferedWriter.write('\0');
+                bufferedWriter.write("");
                 bufferedWriter.append(phone.toStringToFile() + '\n');
             }
         }

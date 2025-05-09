@@ -50,24 +50,7 @@ public class Validator {
         return ScreenResolution.values()[scrResNum - 1];
     }
 
-    public static String setTypeWithValidation() {
-        System.out.print("""
-                \t1. Phone\s
-                \t2. SmartPhone \
-                
-                \t3. KeypadPhone\s
-                \t4. GamingPhone \
-                
-                \t5. FoldablePhone\s
-                \t6. Exit from create phone
-                Choose type:\s""");
-        int input = setIntWithValidation();
-
-        while (input < 1 || input > 6) {
-            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
-            input = setIntWithValidation();
-        }
-
+    public static String setTypeWithValidation(int input) {
         return switch (input) {
             case 1 -> "Phone";
             case 2 -> "SmartPhone";

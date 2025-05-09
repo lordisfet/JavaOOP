@@ -12,7 +12,24 @@ public class PhoneFactory {
     private final Scanner scanner = new Scanner(System.in);
 
     public Phone createPhoneFromInput() {
-        String type = setTypeWithValidation();
+        System.out.print("""
+                \t1. Phone\s
+                \t2. SmartPhone \
+                
+                \t3. KeypadPhone\s
+                \t4. GamingPhone \
+                
+                \t5. FoldablePhone\s
+                \t6. Exit from create phone
+                Choose type:\s""");
+        int input = setIntWithValidation();
+
+        while (input < 1 || input > 6) {
+            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
+            input = setIntWithValidation();
+        }
+
+        String type = setTypeWithValidation(input);
         if (type.isEmpty()) return null; // повернення в головне меню
 
         System.out.print("Enter brand: ");

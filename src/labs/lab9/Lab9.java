@@ -43,12 +43,16 @@ public class Lab9 {
 
             switch (action) {
                 case 1 -> {
-                    Phone newPhone = factory.createPhoneFromInput();
-                    if (newPhone != null) {
-                        repository.add(newPhone);
-                        System.out.println("\nObj was been added");
-                    } else {
-                        System.out.println("Returning to menu...");
+                    try {
+                        Phone newPhone = factory.createPhoneFromInput();
+                        if (newPhone != null) {
+                            repository.add(newPhone);
+                            System.out.println("\nObj was been added");
+                        } else {
+                            System.out.println("Returning to menu...");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Obj creating error: " + e.getMessage());
                     }
                 }
                 case 2 -> {
@@ -74,6 +78,5 @@ public class Lab9 {
                 default -> System.out.println("Invalid input. Try again.");
             }
         } while (true);
-
     }
 }
