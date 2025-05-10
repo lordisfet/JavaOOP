@@ -3,13 +3,13 @@ package labs.lab9.Entities;
 import labs.lab9.Entities.Phones.*;
 import labs.lab9.Enums.ScreenResolution;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PhoneFactory {
-    private final Scanner scanner = new Scanner(System.in);
-
     public Phone createPhoneFromInput() {
-        System.out.print("""
+        /*System.out.print("""
                 \t1. Phone\s
                 \t2. SmartPhone \
                 
@@ -24,13 +24,12 @@ public class PhoneFactory {
         while (input < 1 || input > 6) {
             System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
             input = setIntWithValidation();
-        }
-
+        }*/
         String type = setTypeWithValidation();
         if (type.isEmpty()) return null; // повернення в головне меню
 
         System.out.print("Enter brand: ");
-        String brand =  setStringWithValidation();
+        String brand = setStringWithValidation();
         System.out.print("Enter model: ");
         String model = setStringWithValidation();
         System.out.print("Enter price: ");
@@ -66,9 +65,61 @@ public class PhoneFactory {
             case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "GamingPhone" -> createGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "FoldablePhone" -> createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "FoldablePhone" ->
+                    createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             default -> throw new IllegalArgumentException("Type of phone not exists");
         };
+    }
+
+    public ArrayList<Phone> createPhoneFromAttributes(ArrayList<Map<String, String>> attrs) {
+        ArrayList<Phone> listOfPhones = new ArrayList<>();
+        for (Map<String, String> phoneAttrs : attrs) {
+            String type = phoneAttrs.get("type");
+
+            String brand = phoneAttrs.get("brand");
+            String model = phoneAttrs.get("model");
+            double price = Double.parseDouble(phoneAttrs.get("price"));
+            int ram = Integer.parseInt(phoneAttrs.get("ramAmount"));
+            int rom = Integer.parseInt(phoneAttrs.get("romAmount"));
+            ScreenResolution resolution = ScreenResolution.valueOf(phoneAttrs.get("screenResolution"));
+
+            switch (type) {
+                case "Phone": {
+                    listOfPhones.add(new Phone(type, brand, model, price, ram, rom, resolution));
+                    break;
+                }
+                case "SmartPhone": {
+                    int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
+                    int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
+                    listOfPhones.add(new SmartPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP));
+                    break;
+                }
+                case "KeypadPhone": {
+                    int buttonCount = Integer.parseInt(phoneAttrs.get("buttonCount"));
+                    int supportedBandCount = Integer.parseInt(phoneAttrs.get("supportedBandCount"));
+                    listOfPhones.add(new KeypadPhone(type, brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount));
+                    break;
+                }
+                case "FoldablePhone": {
+                    int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
+                    int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
+                    int foldableScreens = Integer.parseInt(phoneAttrs.get("foldableScreens"));
+                    listOfPhones.add(new FoldablePhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens));
+                    break;
+                }
+                case "GamingPhone": {
+                    int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
+                    int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
+                    boolean activeCooling = Boolean.parseBoolean(phoneAttrs.get("activeCooling"));
+                    listOfPhones.add(new GamingPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling));
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected type: " + type);
+            }
+        }
+
+        return listOfPhones;
     }
 
     private SmartPhone createSmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
@@ -112,7 +163,7 @@ public class PhoneFactory {
     }
 
     private FoldablePhone createFoldablePhone(String type, String brand, String model, double price,
-                                          int ramAmount, int romAmount, ScreenResolution screenResolution) {
+                                              int ramAmount, int romAmount, ScreenResolution screenResolution) {
         SmartPhone basePhone = createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
 
         if (basePhone == null) return null;
@@ -161,7 +212,6 @@ public class PhoneFactory {
     }
 
     public static ScreenResolution setScrResWithValidation() {
-        Scanner scanner = new Scanner(System.in);
         int scrResNum = setIntWithValidation();
         while (scrResNum < 1 || scrResNum > ScreenResolution.values().length) {
             System.out.print("Number must be in range 1 to 8: ");
@@ -172,9 +222,16 @@ public class PhoneFactory {
     }
 
     public static String setTypeWithValidation() {
-        System.out.print("\t1. Phone \n\t2. SmartPhone " +
-                "\n\t3. KeypadPhone \n\t4. GamingPhone " +
-                "\n\t5. FoldablePhone \n\t6. Exit from create phone\nChoose type: ");
+        System.out.print("""
+                \t1. Phone\s
+                \t2. SmartPhone \
+                
+                \t3. KeypadPhone\s
+                \t4. GamingPhone \
+                
+                \t5. FoldablePhone\s
+                \t6. Exit from create phone
+                Choose type:\s""");
         int input = setIntWithValidation();
 
         while (input < 1 || input > 6) {

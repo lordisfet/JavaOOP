@@ -1,1 +1,2 @@
-type:Phone;brand:Apple;model:Iphone 16;price:1800.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;
+type:SmartPhone;brand:Apple;model:Iphone 16;price:1800.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;
+type:SmartPhone;brand:Asus;model:ROG;price:1500.0;ramAmount:8;romAmount:512;screenResolution:UHD_4K;cpuCores:16;frontCameraMP:32;

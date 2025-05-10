@@ -29,11 +29,19 @@ import static labs.lab9.Entities.PhoneFactory.setIntWithValidation;
 
 public class Lab9 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         PhoneRepository repository = new PhoneRepository();
         PhoneFactory factory = new PhoneFactory();
         int action;
         String fileName = "src/labs/lab9/Data/input.txt";
+
+        try {
+            InitialFile file = new InitialFile(fileName);
+            for (Phone phone : factory.createPhoneFromAttributes(file.readAllData())) {
+                repository.add(phone);
+            }
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
 
         do {
             System.out.println("\nMENU");
@@ -59,7 +67,7 @@ public class Lab9 {
                 }
                 case 2 -> {
                     try {
-                        System.out.println("List of phones: ");
+                        System.out.println("List of phones:\n");
                         for (Phone phone : repository.getAll()) {
                             System.out.println(phone);
                         }
@@ -75,6 +83,7 @@ public class Lab9 {
                     } catch (IOException e) {
                         System.out.println("File error: " + e.getMessage());
                     }
+
                     return;
                 }
                 default -> System.out.println("Invalid input. Try again.");

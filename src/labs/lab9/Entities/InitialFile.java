@@ -67,17 +67,18 @@ public class InitialFile {
         return Objects.hash(fileName, file);
     }
 
-    public ArrayList<Map<String, String>> readData() throws IOException {
+    public ArrayList<Map<String, String>> readAllData() throws IOException {
+        ArrayList<Map<String, String>> listOfAttributes;
         try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
-            ArrayList<Map<String, String>> listOfAttributes = new ArrayList<>();
+            listOfAttributes = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 listOfAttributes.add(parsePhoneData(line));
             }
-
-            return listOfAttributes;
         }
+
+        return listOfAttributes;
     }
 
     public void writeData(ArrayList<Phone> phones) throws IOException {
