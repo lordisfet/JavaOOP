@@ -103,6 +103,7 @@ public class SmartPhone extends Phone {
                 + "frontCameraMP: " + frontCameraMP + "\n";
     }
 
+    @Override
     public String toStringToFile() {
         return super.toStringToFile() + "cpuCores:" + cpuCores + ';'
                 + "frontCameraMP:" + frontCameraMP + ';';

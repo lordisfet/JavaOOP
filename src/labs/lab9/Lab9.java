@@ -2,17 +2,20 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №8
- * Дата:          2025-04-22 14:00 (UTC+2)
- * Час виконання: 1 година
+ * Лабораторна:   №10
+ * Час виконання: 3 години
  *
  * Опис:
- Додати ще два об`єкти до ієрархії класів. Оновити меню з можливості виходу з пункту 1.
- * Оновити драйвер для того, щоб використовувати нові класи.
+ * Додати збереження елементів доданих у файл та їх читання перед початком роботи програми
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
-
+/*
+type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1299.99;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:50;
+type:KeypadPhone;brand:Nokia;model:3310;price:49.99;ramAmount:0;romAmount:0;screenResolution:WVGA;buttonCount:20;supportedBandCount:2;
+type:FoldablePhone;brand:Huawei;model:Mate X3;price:1999.0;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:40;foldableScreens:2;
+type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1099.0;ramAmount:16;romAmount:1024;screenResolution:FULL_HD;cpuCores:8;frontCameraMP:32;coolingSystem:true;
+*/
 package labs.lab9;
 
 import labs.lab9.Entities.PhoneFactory;
@@ -37,7 +40,7 @@ public class Lab9 {
             for (Phone phone : factory.createPhoneFromAttributes(file.readAllData())) {
                 repository.add(phone);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("File error: " + e.getMessage());
         }
 

@@ -44,8 +44,9 @@ public class GamingPhone extends SmartPhone {
                 (activeCooling ? "Yes" : "No") + "\n";
     }
 
+    @Override
     public String toStringToFile() {
-        return super.toString() + "GamingCooling:" + ';' +
+        return super.toStringToFile() + "GamingCooling:" + ';' +
                 (activeCooling ? "Yes" : "No") + ';';
     }
 

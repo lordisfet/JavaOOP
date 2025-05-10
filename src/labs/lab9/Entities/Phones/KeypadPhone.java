@@ -107,6 +107,7 @@ public class KeypadPhone extends Phone {
                 "supportedBandCount: " + supportedBandCount + "\n";
     }
 
+    @Override
     public String toStringToFile() {
         return super.toStringToFile() + "buttonCount:" + buttonCount + ';' +
                 "supportedBandCount:" + supportedBandCount + ';';
