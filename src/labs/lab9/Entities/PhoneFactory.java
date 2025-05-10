@@ -1,11 +1,15 @@
 package labs.lab9.Entities;
 
 import labs.lab9.Entities.Phones.*;
+import labs.lab9.Entities.Phones.*;
 import labs.lab9.Enums.ScreenResolution;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+
+import static labs.lab9.Entities.InitialFile.getValueSeparator;
+import static labs.lab9.Entities.InitialFile.getfieldSeparator;
 
 public class PhoneFactory {
     public Phone createPhoneFromInput() {
@@ -26,6 +30,7 @@ public class PhoneFactory {
             input = setIntWithValidation();
         }*/
         String type = setTypeWithValidation();
+        System.out.println("Cant use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
         if (type.isEmpty()) return null; // повернення в головне меню
 
         System.out.print("Enter brand: ");

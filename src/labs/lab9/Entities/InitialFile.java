@@ -47,6 +47,10 @@ public class InitialFile {
         this.file = file;
     }
 
+    public static String getfieldSeparator() { return fieldSeparator;}
+
+    public static String getValueSeparator() { return valueSeparator;}
+
     @Override
     public String toString() {
         return "InitialFile{" +

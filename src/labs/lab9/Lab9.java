@@ -20,10 +20,8 @@ import labs.lab9.Entities.Phones.*;
 import labs.lab9.Entities.InitialFile;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import labs.lab9.Entities.PhoneRepository;
-import labs.lab9.Entities.PhoneFactory;
 
 import static labs.lab9.Entities.PhoneFactory.setIntWithValidation;
 
