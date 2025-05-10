@@ -33,6 +33,11 @@ public class GamingPhone extends SmartPhone {
         this.activeCooling = activeCooling;
     }
 
+    public GamingPhone(GamingPhone other) {
+        super(other);
+        this.activeCooling = other.activeCooling;
+    }
+
     /**
      * Override of the toString() method to output detailed information about the gaming phone.
      *

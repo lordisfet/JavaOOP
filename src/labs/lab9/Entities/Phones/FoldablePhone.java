@@ -33,6 +33,11 @@ public class FoldablePhone extends SmartPhone {
         this.foldableScreens = foldableScreens;
     }
 
+    public FoldablePhone(FoldablePhone other) {
+        super(other);
+        this.foldableScreens = other.foldableScreens;
+    }
+
     /**
      * Returns a string representation of the {@code FoldablePhone} object, including the foldable screens.
      * This method overrides the {@link SmartPhone#toString} method.

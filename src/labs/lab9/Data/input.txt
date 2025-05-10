@@ -1,2 +1,6 @@
 type:SmartPhone;brand:Apple;model:Iphone 16;price:1800.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;
-type:KeypadPhone;brand:Alcatel;model:GoFlip 3;price:89.99;ramAmount:0;romAmount:4;screenResolution:WVGA;buttonCount:50;suppotedBandCount:8:
+type:KeypadPhone;brand:Alcatel;model:GoFlip 3;price:89.99;ramAmount:0;romAmount:4;screenResolution:WVGA;buttonCount:50;supportedBandCount:8;
+type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1300.0;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;
+type:KeypadPhone;brand:Nokia;model:3310;price:50.0;ramAmount:1;romAmount:2;screenResolution:FWVGA;buttonCount:20;supportedBandCount:2;
+type:FoldablePhone;brand:Huawei;model:Mate X3;price:2000.0;ramAmount:12;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;foldableScreens: 2;
+type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1110.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:32;GamingCooling:;Yes;
