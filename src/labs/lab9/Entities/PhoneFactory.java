@@ -11,27 +11,24 @@ import java.util.Scanner;
 import static labs.lab9.Entities.InitialFile.getValueSeparator;
 import static labs.lab9.Entities.InitialFile.getfieldSeparator;
 
+/**
+ * The {@code PhoneFactory} class provides methods for dynamically creating {@link Phone} objects.
+ * It supports interactive user input as well as structured data parsing.
+ */
 public class PhoneFactory {
-    public Phone createPhoneFromInput() {
-        /*System.out.print("""
-                \t1. Phone\s
-                \t2. SmartPhone \
-                
-                \t3. KeypadPhone\s
-                \t4. GamingPhone \
-                
-                \t5. FoldablePhone\s
-                \t6. Exit from create phone
-                Choose type:\s""");
 
-        int input = setIntWithValidation();
-        while (input < 1 || input > 6) {
-            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
-            input = setIntWithValidation();
-        }*/
+    /**
+     * Creates a {@link Phone} instance based on user input.
+     * Users specify phone attributes interactively, including brand, model, price, RAM, ROM, and screen resolution.
+     * Throws an exception if the provided phone type is invalid.
+     *
+     * @return a new {@code Phone} object based on user input, or {@code null} if input is empty
+     * @throws IllegalArgumentException if the phone type does not exist
+     */
+    public Phone createPhoneFromInput() {
         String type = setTypeWithValidation();
-        System.out.println("Cant use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
-        if (type.isEmpty()) return null; // повернення в головне меню
+        System.out.println("Cannot use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
+        if (type.isEmpty()) return null; // Return to the main menu
 
         System.out.print("Enter brand: ");
         String brand = setStringWithValidation();
@@ -56,13 +53,13 @@ public class PhoneFactory {
             romAmount = setIntWithValidation();
         }
 
+        System.out.println("List of screen resolutions: ");
         int i = 1;
-        System.out.println("List of screen resolution: ");
         for (ScreenResolution scrRes : ScreenResolution.values()) {
             System.out.println("\t" + i + ". " + scrRes);
             i++;
         }
-        System.out.print("Enter number of screen resolution(1-8): ");
+        System.out.print("Enter screen resolution number (1-8): ");
         ScreenResolution screenResolution = setScrResWithValidation();
 
         return switch (type) {
@@ -72,15 +69,22 @@ public class PhoneFactory {
             case "GamingPhone" -> createGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "FoldablePhone" ->
                     createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            default -> throw new IllegalArgumentException("Type of phone not exists");
+            default -> throw new IllegalArgumentException("Type of phone does not exist");
         };
     }
 
+    /**
+     * Creates a list of {@code Phone} objects from structured attribute mappings.
+     * Parses key-value attribute pairs and constructs appropriate phone instances dynamically.
+     *
+     * @param attrs a list of maps containing phone attributes
+     * @return a list of {@code Phone} objects based on the provided attributes
+     * @throws IllegalArgumentException if an unexpected phone type is encountered
+     */
     public ArrayList<Phone> createPhoneFromAttributes(ArrayList<Map<String, String>> attrs) {
         ArrayList<Phone> listOfPhones = new ArrayList<>();
         for (Map<String, String> phoneAttrs : attrs) {
             String type = phoneAttrs.get("type");
-
             String brand = phoneAttrs.get("brand");
             String model = phoneAttrs.get("model");
             double price = Double.parseDouble(phoneAttrs.get("price"));
@@ -89,44 +93,50 @@ public class PhoneFactory {
             ScreenResolution resolution = ScreenResolution.valueOf(phoneAttrs.get("screenResolution"));
 
             switch (type) {
-                case "Phone": {
-                    listOfPhones.add(new Phone(type, brand, model, price, ram, rom, resolution));
-                    break;
-                }
-                case "SmartPhone": {
+                case "Phone" -> listOfPhones.add(new Phone(type, brand, model, price, ram, rom, resolution));
+                case "SmartPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     listOfPhones.add(new SmartPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP));
-                    break;
                 }
-                case "KeypadPhone": {
+                case "KeypadPhone" -> {
                     int buttonCount = Integer.parseInt(phoneAttrs.get("buttonCount"));
                     int supportedBandCount = Integer.parseInt(phoneAttrs.get("supportedBandCount"));
                     listOfPhones.add(new KeypadPhone(type, brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount));
-                    break;
                 }
-                case "FoldablePhone": {
+                case "FoldablePhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     int foldableScreens = Integer.parseInt(phoneAttrs.get("foldableScreens"));
                     listOfPhones.add(new FoldablePhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens));
-                    break;
                 }
-                case "GamingPhone": {
+                case "GamingPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     boolean activeCooling = Boolean.parseBoolean(phoneAttrs.get("activeCooling"));
                     listOfPhones.add(new GamingPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling));
-                    break;
                 }
-                default:
-                    throw new IllegalArgumentException("Unexpected type: " + type);
+                default -> throw new IllegalArgumentException("Unexpected type: " + type);
             }
         }
 
         return listOfPhones;
     }
 
+    /**
+     * Creates a {@link SmartPhone} instance with user-provided specifications.
+     * Prompts the user to enter CPU core count and front camera resolution.
+     * Handles invalid input by catching exceptions and returning {@code null}.
+     *
+     * @param type             the type of phone
+     * @param brand            the brand name of the phone
+     * @param model            the model name of the phone
+     * @param price            the price of the phone
+     * @param ramAmount        the amount of RAM in GB
+     * @param romAmount        the amount of ROM in GB
+     * @param screenResolution the screen resolution of the phone
+     * @return a new {@link SmartPhone} instance or {@code null} if input validation fails
+     */
     private SmartPhone createSmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter number of CPU cores: ");
         int cpuCores = setIntWithValidation();
@@ -141,6 +151,19 @@ public class PhoneFactory {
         }
     }
 
+    /**
+     * Creates a {@link KeypadPhone} instance with user-provided specifications.
+     * Requests the user to input the number of physical buttons and supported frequency bands.
+     *
+     * @param type             the type of phone
+     * @param brand            the brand name of the phone
+     * @param model            the model name of the phone
+     * @param price            the price of the phone
+     * @param ramAmount        the amount of RAM in GB
+     * @param romAmount        the amount of ROM in GB
+     * @param screenResolution the screen resolution of the phone
+     * @return a new {@link KeypadPhone} instance or {@code null} if input validation fails
+     */
     private KeypadPhone createKeypadPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter Count of buttons: ");
         int buttonCount = setIntWithValidation();
@@ -155,6 +178,19 @@ public class PhoneFactory {
         }
     }
 
+    /**
+     * Creates a {@link GamingPhone} instance by first constructing a {@link SmartPhone} base phone.
+     * Adds gaming-specific attributes such as active cooling.
+     *
+     * @param type  the type of phone
+     * @param brand the brand name of the phone
+     * @param model the model name of the phone
+     * @param price the price of the phone
+     * @param ram   the amount of RAM in GB
+     * @param rom   the amount of ROM in GB
+     * @param res   the screen resolution of the phone
+     * @return a new {@link GamingPhone} instance or {@code null} if input validation fails
+     */
     private GamingPhone createGamingPhone(String type, String brand, String model, double price, int ram, int rom, ScreenResolution res) {
         SmartPhone basePhone = createSmartPhone(type, brand, model, price, ram, rom, res);
 
@@ -181,6 +217,12 @@ public class PhoneFactory {
         );
     }
 
+    /**
+     * Validates and returns an integer input from the user.
+     * Continually prompts until a valid integer is entered.
+     *
+     * @return a validated integer
+     */
     public static int setIntWithValidation() {
         Scanner scanner = new Scanner(System.in);
 
@@ -191,6 +233,12 @@ public class PhoneFactory {
         return scanner.nextInt();
     }
 
+    /**
+     * Validates and returns a decimal (double) input from the user.
+     * Continually prompts until a valid double is entered.
+     *
+     * @return a validated decimal number
+     */
     public static double setDoubleWithValidation() {
         Scanner scanner = new Scanner(System.in);
 
@@ -202,6 +250,12 @@ public class PhoneFactory {
         return scanner.nextDouble();
     }
 
+    /**
+     * Reads a user input string from the console, ensuring it is not empty.
+     * Keeps prompting until a valid, non-empty input is entered.
+     *
+     * @return a validated, non-empty string entered by the user
+     */
     public static String setStringWithValidation() {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -216,6 +270,12 @@ public class PhoneFactory {
         return input;
     }
 
+    /**
+     * Validates user input for screen resolution selection.
+     * Ensures the entered number corresponds to a valid {@link ScreenResolution} option.
+     *
+     * @return a {@link ScreenResolution} object based on validated user input
+     */
     public static ScreenResolution setScrResWithValidation() {
         int scrResNum = setIntWithValidation();
         while (scrResNum < 1 || scrResNum > ScreenResolution.values().length) {
@@ -226,6 +286,13 @@ public class PhoneFactory {
         return ScreenResolution.values()[scrResNum - 1];
     }
 
+    /**
+     * Prompts the user to select a phone type from a predefined list.
+     * Ensures the input falls within the valid range of options.
+     *
+     * @return a string representing the selected phone type, or an empty string if the user exits
+     * @throws IllegalStateException if an unexpected type is selected
+     */
     public static String setTypeWithValidation() {
         System.out.print("""
                 \t1. Phone\s

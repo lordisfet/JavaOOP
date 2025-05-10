@@ -33,6 +33,12 @@ public class GamingPhone extends SmartPhone {
         this.activeCooling = activeCooling;
     }
 
+    /**
+     * Constructs a new {@code GamingPhone} instance by copying the attributes of an existing {@code GamingPhone} object.
+     * This copy constructor ensures a new object retains all properties from the provided instance.
+     *
+     * @param other the {@code GamingPhone} object to duplicate
+     */
     public GamingPhone(GamingPhone other) {
         super(other);
         this.activeCooling = other.activeCooling;
@@ -45,13 +51,19 @@ public class GamingPhone extends SmartPhone {
      */
     @Override
     public String toString() {
-        return super.toString() + "GamingCooling: " +
+        return super.toString() + "gamingCooling: " +
                 (activeCooling ? "Yes" : "No") + "\n";
     }
 
+    /**
+     * Generates a formatted string representation of the {@code GamingPhone} object for file storage.
+     * The output includes all inherited attributes from {@link SmartPhone}, along with gaming-specific cooling details.
+     *
+     * @return a structured string suitable for file storage, with gaming cooling information
+     */
     @Override
     public String toStringToFile() {
-        return super.toStringToFile() + "GamingCooling:" + ';' +
+        return super.toStringToFile() + "GamingCooling:" +
                 (activeCooling ? "Yes" : "No") + ';';
     }
 

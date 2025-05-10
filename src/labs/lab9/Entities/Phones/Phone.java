@@ -61,6 +61,14 @@ public class Phone {
         this.screenResolution = screenResolution;
     }
 
+    /**
+     * Copy constructor for the {@code Phone} class.
+     * Creates a new {@code Phone} object by duplicating the attributes of an existing {@code Phone} instance.
+     * If the provided object is {@code null}, an {@link IllegalArgumentException} is thrown.
+     *
+     * @param other the {@code Phone} object to copy
+     * @throws IllegalArgumentException if the provided {@code Phone} object is {@code null}
+     */
     public Phone(Phone other) {
         if (other == null) {
             throw new IllegalArgumentException("Cannot copy from a null Phone object");
@@ -74,6 +82,7 @@ public class Phone {
         this.romAmount = other.romAmount;
         this.screenResolution = other.screenResolution;
     }
+
 
     /**
      * Gets the type of the phone.
@@ -246,6 +255,13 @@ public class Phone {
                 "screenResolution: " + screenResolution + "\n";
     }
 
+    /**
+     * Generates a structured string representation of the {@code Phone} object for file storage.
+     * The output includes essential attributes such as type, brand, model, price, RAM, ROM, and screen resolution.
+     * Each field is separated by a semicolon (';') for easy parsing when stored in a file.
+     *
+     * @return a formatted string containing phone details, ready for file storage
+     */
     public String toStringToFile() {
         return "type:" + type + ';' +
                 "brand:" + brand + ';' +
@@ -255,6 +271,7 @@ public class Phone {
                 "romAmount:" + romAmount + ';' +
                 "screenResolution:" + screenResolution + ';';
     }
+
 
     /**
      * Compares the current {@code Phone} object with another object for equality.

@@ -107,6 +107,12 @@ public class KeypadPhone extends Phone {
                 "supportedBandCount: " + supportedBandCount + "\n";
     }
 
+    /**
+     * Generates a structured string representation of the {@code Phone} object for file storage.
+     * This output includes inherited attributes from {@link SmartPhone}, along with button count and supported band count details.
+     *
+     * @return a formatted string suitable for file storage, containing button and supported band information
+     */
     @Override
     public String toStringToFile() {
         return super.toStringToFile() + "buttonCount:" + buttonCount + ';' +

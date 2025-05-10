@@ -5,27 +5,27 @@ import labs.lab9.Enums.ScreenResolution;
 import java.util.Objects;
 
 /**
- * The {@code FoldablePhone} class represents a foldable phone that extends the functionality of a {@link SmartPhone}.
- * It includes additional features such as foldable screens.
+ * The {@code FoldablePhone} class represents a foldable smartphone that extends the functionality of a {@link SmartPhone}.
+ * It introduces additional features, specifically foldable screens.
  */
 public class FoldablePhone extends SmartPhone {
-    private int foldableScreens; // The number of foldable screens in the phone
+    private int foldableScreens; // Number of foldable screens in the phone
 
     /**
-     * Constructs a new {@code FoldablePhone} object with the specified parameters.
-     * It initializes the phone with the given type, brand, model, price, RAM, ROM, screen resolution, CPU cores,
-     * front camera, and the number of foldable screens.
+     * Constructs a new {@code FoldablePhone} instance with the specified parameters.
+     * Initializes the phone with details including brand, model, price, RAM, ROM, screen resolution, CPU cores,
+     * front camera specifications, and the number of foldable screens.
      *
-     * @param type the type of the phone (e.g., smartphone, feature phone)
-     * @param brand the brand of the phone (e.g., Apple, Samsung)
-     * @param model the model of the phone (e.g., iPhone 12)
-     * @param price the price of the phone in USD
-     * @param ram the amount of RAM in the phone in GB
-     * @param rom the amount of ROM in the phone in GB
-     * @param res the screen resolution of the phone
-     * @param cpuCores the number of CPU cores in the phone
-     * @param frontCam the number of megapixels in the front camera
-     * @param foldableScreens the number of foldable screens in the phone
+     * @param type            the category of the phone (e.g., smartphone, feature phone)
+     * @param brand           the manufacturer of the phone (e.g., Apple, Samsung)
+     * @param model           the specific model name (e.g., iPhone 12)
+     * @param price           the price of the phone in USD
+     * @param ram             the amount of RAM (in GB)
+     * @param rom             the storage capacity (in GB)
+     * @param res             the screen resolution
+     * @param cpuCores        the number of CPU cores
+     * @param frontCam        the front camera resolution (in megapixels)
+     * @param foldableScreens the number of foldable display panels
      */
     public FoldablePhone(String type, String brand, String model, double price, int ram, int rom,
                          ScreenResolution res, int cpuCores, int frontCam, int foldableScreens) {
@@ -33,34 +33,46 @@ public class FoldablePhone extends SmartPhone {
         this.foldableScreens = foldableScreens;
     }
 
+    /**
+     * Copy constructor that creates a new {@code FoldablePhone} instance
+     * by duplicating the attributes of an existing {@code FoldablePhone} object.
+     *
+     * @param other the {@code FoldablePhone} instance to copy
+     */
     public FoldablePhone(FoldablePhone other) {
         super(other);
         this.foldableScreens = other.foldableScreens;
     }
 
     /**
-     * Returns a string representation of the {@code FoldablePhone} object, including the foldable screens.
-     * This method overrides the {@link SmartPhone#toString} method.
+     * Returns a formatted string representing the details of the {@code FoldablePhone}.
+     * This method extends {@link SmartPhone#toString} by including foldable screen details.
      *
-     * @return a string representation of the foldable phone details
+     * @return a descriptive string of the foldable phone
      */
     @Override
     public String toString() {
-        return super.toString() + "foldableScreens: " + foldableScreens + "\n";
-    }
-
-    @Override
-    public String toStringToFile() {
-        return super.toStringToFile() + "foldableScreens: " + foldableScreens + ';';
+        return super.toString() + "Foldable screens: " + foldableScreens + "\n";
     }
 
     /**
-     * Compares the current {@code FoldablePhone} object with another object for equality.
-     * The comparison is based on the values of all fields, including those from the superclass {@link SmartPhone}.
-     * This method overrides the {@link SmartPhone#equals} method.
+     * Generates a structured string representation of the {@code FoldablePhone} object for file storage.
+     * This output includes inherited attributes from {@link SmartPhone}, along with foldable screen details.
+     *
+     * @return a formatted string suitable for file storage, containing foldable screen information
+     */
+    @Override
+    public String toStringToFile() {
+        return super.toStringToFile() + "foldableScreens:" + foldableScreens + ';';
+    }
+
+
+    /**
+     * Compares this {@code FoldablePhone} instance with another object for equality.
+     * The comparison considers all attributes, including inherited ones from {@link SmartPhone}.
      *
      * @param o the object to compare with
-     * @return true if the objects are equal, false otherwise
+     * @return {@code true} if the instances are equivalent, {@code false} otherwise
      */
     @Override
     public boolean equals(Object o) {
@@ -71,11 +83,10 @@ public class FoldablePhone extends SmartPhone {
     }
 
     /**
-     * Returns a hash code value for the {@code FoldablePhone} object.
-     * The hash code is calculated based on the values of all fields, including those from the superclass {@link SmartPhone}.
-     * This method overrides the {@link SmartPhone#hashCode} method.
+     * Generates a hash code for this {@code FoldablePhone} instance.
+     * The hash code includes both inherited attributes and unique ones from {@link SmartPhone}.
      *
-     * @return a hash code value for this {@code FoldablePhone} object
+     * @return a hash code representing this {@code FoldablePhone}
      */
     @Override
     public int hashCode() {

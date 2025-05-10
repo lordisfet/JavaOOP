@@ -103,6 +103,13 @@ public class SmartPhone extends Phone {
                 + "frontCameraMP: " + frontCameraMP + "\n";
     }
 
+    /**
+     * Generates a structured string representation of the {@code SmartPhone} object for file storage.
+     * The output includes inherited attributes from {@link Phone}, along with CPU core count and front camera resolution.
+     * Each field is separated by a semicolon (';') for easy parsing when stored in a file.
+     *
+     * @return a formatted string containing smartphone details, ready for file storage
+     */
     @Override
     public String toStringToFile() {
         return super.toStringToFile() + "cpuCores:" + cpuCores + ';'
