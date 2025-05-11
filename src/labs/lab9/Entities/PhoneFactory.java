@@ -301,7 +301,7 @@ public class PhoneFactory {
                 \t4. GamingPhone \
                 
                 \t5. FoldablePhone\s
-                \t6. Exit from create phone
+                \t6. Exit
                 Choose type:\s""");
         int input = setIntWithValidation();
 

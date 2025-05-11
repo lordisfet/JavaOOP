@@ -5,3 +5,4 @@ type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1300.0;ramAmount:12;romAmou
 type:KeypadPhone;brand:Nokia;model:3310;price:50.0;ramAmount:1;romAmount:2;screenResolution:FWVGA;buttonCount:20;supportedBandCount:2;
 type:FoldablePhone;brand:Huawei;model:Mate X3;price:2000.0;ramAmount:12;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;foldableScreens:2;
 type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1110.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:32;GamingCooling:No;
+type:SmartPhone;brand:LG;model:G7;price:300.0;ramAmount:2;romAmount:32;screenResolution:FULL_HD;cpuCores:8;frontCameraMP:16;

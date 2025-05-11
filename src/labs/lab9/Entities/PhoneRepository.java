@@ -74,7 +74,7 @@ public class PhoneRepository {
         return list;
     }
 
-    public ArrayList<Phone> getPhonesByCount(int ramCount) {
+    public ArrayList<Phone> getPhonesByRamCount(int ramCount) {
         ArrayList<Phone> list = new ArrayList<>();
 
         for (Phone phone : phones) {

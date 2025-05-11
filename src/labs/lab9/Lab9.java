@@ -26,7 +26,7 @@ import java.io.IOException;
 
 import labs.lab9.Entities.PhoneRepository;
 
-import static labs.lab9.Entities.PhoneFactory.setIntWithValidation;
+import static labs.lab9.Entities.PhoneFactory.*;
 
 public class Lab9 {
     public static void main(String[] args) {
@@ -55,12 +55,67 @@ public class Lab9 {
 
             switch (action) {
                 case 1 -> {
+                    int criteria;
+
                     System.out.print("""
                             \t1. Type
                             \t2. Brand
                             \t3. RAM count
+                            \t4. Exit from searching
                             """);
-                    System.out.println("\nCriteria for search: ");
+                    System.out.print("\nCriteria for search: ");
+                    criteria = setIntWithValidation();
+                    switch (criteria) {
+                        case 1 -> {
+                            System.out.print("Enter type:\n");
+                            String valueOfCriteria = setTypeWithValidation();
+                            if (valueOfCriteria.isEmpty()) {
+                                System.out.println("Returning to menu...");
+                                break;
+                            }
+                            System.out.println("\nList of phones by type:\n");
+
+                            try {
+                                for (Phone phone : repository.getPhonesByType(valueOfCriteria)) {
+                                    System.out.println(phone);
+                                }
+                            } catch (NullPointerException e) {
+                                System.out.println("The list is empty. Elements with type \"" +
+                                        valueOfCriteria + "\" not exist");
+                            }
+                        }
+                        case 2 -> {
+                            System.out.print("Enter brand: ");
+                            String valueOfCriteria = setStringWithValidation();
+                            System.out.println("\nList of phones by type:\n");
+
+                            try {
+                                for (Phone phone : repository.getPhonesByBrand(valueOfCriteria)) {
+                                    System.out.println(phone);
+                                }
+                            } catch (NullPointerException e) {
+                                System.out.println("The list is empty. Elements with brand \"" +
+                                        valueOfCriteria + "\" not exist");
+                            }
+                        }
+                        case 3 -> {
+                            System.out.print("Enter RAM count: ");
+                            int valueOfCriteria = setIntWithValidation();
+                            System.out.println("\nList of phones by type:\n");
+
+                            try {
+                                for (Phone phone : repository.getPhonesByRamCount(valueOfCriteria)) {
+                                    System.out.println(phone);
+                                }
+                            } catch (NullPointerException e) {
+                                System.out.println("The list is empty. Elements with RAM count \"" +
+                                        valueOfCriteria + "\" not exist");
+                            }
+                        }
+                        case 4 -> {
+                            System.out.println("Returning to menu...");
+                        }
+                    }
                 }
                 case 2 -> {
                     try {
@@ -77,7 +132,7 @@ public class Lab9 {
                 }
                 case 3 -> {
                     try {
-                        System.out.println("List of phones:\n");
+                        System.out.println("\nList of phones:\n");
                         for (Phone phone : repository.getAll()) {
                             System.out.println(phone);
                         }
