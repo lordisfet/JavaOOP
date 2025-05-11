@@ -2,31 +2,27 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №10
- * Час виконання: 3 години
+ * Лабораторна:   №11
+ * Час виконання: 20 хвилин
  *
  * Опис:
- * Додати збереження елементів доданих у файл та їх читання перед початком роботи програми
+ * Додати до програми можливість пошуку за трьома, як мінімум,
+ * критеріями та вивід їх результату виконанняна екран
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
-/*
-type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1299.99;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:50;
-type:KeypadPhone;brand:Nokia;model:3310;price:49.99;ramAmount:0;romAmount:0;screenResolution:WVGA;buttonCount:20;supportedBandCount:2;
-type:FoldablePhone;brand:Huawei;model:Mate X3;price:1999.0;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:40;foldableScreens:2;
-type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1099.0;ramAmount:16;romAmount:1024;screenResolution:FULL_HD;cpuCores:8;frontCameraMP:32;coolingSystem:true;
-*/
-package labs.lab9;
 
-import labs.lab9.Entities.PhoneFactory;
-import labs.lab9.Entities.Phones.*;
-import labs.lab9.Entities.InitialFile;
+package labs.lab9_11;
+
+import labs.lab9_11.Entities.PhoneFactory;
+import labs.lab9_11.Entities.Phones.*;
+import labs.lab9_11.Entities.InitialFile;
 
 import java.io.IOException;
 
-import labs.lab9.Entities.PhoneRepository;
+import labs.lab9_11.Entities.PhoneRepository;
 
-import static labs.lab9.Entities.PhoneFactory.*;
+import static labs.lab9_11.Entities.PhoneFactory.*;
 
 public class Lab9 {
     public static void main(String[] args) {

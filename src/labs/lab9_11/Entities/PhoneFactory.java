@@ -1,14 +1,14 @@
-package labs.lab9.Entities;
+package labs.lab9_11.Entities;
 
-import labs.lab9.Entities.Phones.*;
-import labs.lab9.Enums.ScreenResolution;
+import labs.lab9_11.Entities.Phones.*;
+import labs.lab9_11.Enums.ScreenResolution;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import static labs.lab9.Entities.InitialFile.getValueSeparator;
-import static labs.lab9.Entities.InitialFile.getfieldSeparator;
+import static labs.lab9_11.Entities.InitialFile.getValueSeparator;
+import static labs.lab9_11.Entities.InitialFile.getfieldSeparator;
 
 /**
  * The {@code PhoneFactory} class provides methods for dynamically creating {@link Phone} objects.
@@ -202,6 +202,20 @@ public class PhoneFactory {
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), activeCooling);
     }
 
+    /**
+     * Creates a {@link FoldablePhone} instance based on user input.
+     * First, a {@link SmartPhone} object is created as a base phone, then foldable screen details are added.
+     * If base phone creation fails, the method returns {@code null}.
+     *
+     * @param type the type of the phone
+     * @param brand the brand name of the phone
+     * @param model the model name of the phone
+     * @param price the price of the phone
+     * @param ramAmount the amount of RAM in GB
+     * @param romAmount the amount of ROM in GB
+     * @param screenResolution the screen resolution of the phone
+     * @return a new {@link FoldablePhone} instance or {@code null} if base phone creation fails
+     */
     private FoldablePhone createFoldablePhone(String type, String brand, String model, double price,
                                               int ramAmount, int romAmount, ScreenResolution screenResolution) {
         SmartPhone basePhone = createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);

@@ -1,6 +1,6 @@
-package labs.lab9.Entities.Phones;
+package labs.lab9_11.Entities.Phones;
 
-import labs.lab9.Enums.ScreenResolution;
+import labs.lab9_11.Enums.ScreenResolution;
 
 import java.util.Objects;
 

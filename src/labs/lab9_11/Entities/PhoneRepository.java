@@ -1,7 +1,7 @@
-package labs.lab9.Entities;
+package labs.lab9_11.Entities;
 
-import labs.lab9.Exceptions.NoPhonesAvailableException;
-import labs.lab9.Entities.Phones.Phone;
+import labs.lab9_11.Exceptions.NoPhonesAvailableException;
+import labs.lab9_11.Entities.Phones.Phone;
 
 import java.util.ArrayList;
 
@@ -44,6 +44,13 @@ public class PhoneRepository {
         return phones.get(id);
     }
 
+    /**
+     * Retrieves a list of {@code Phone} objects that match the specified type.
+     * If no matching phones are found, the method returns {@code null}.
+     *
+     * @param type the type of phone to filter by
+     * @return a list of phones matching the given type or {@code null} if none are found
+     */
     public ArrayList<Phone> getPhonesByType(String type) {
         ArrayList<Phone> list = new ArrayList<>();
 
@@ -53,12 +60,16 @@ public class PhoneRepository {
             }
         }
 
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list;
+        return list.isEmpty() ? null : list;
     }
 
+    /**
+     * Retrieves a list of {@code Phone} objects that match the specified brand.
+     * If no matching phones are found, the method returns {@code null}.
+     *
+     * @param brand the brand of phone to filter by
+     * @return a list of phones matching the given brand or {@code null} if none are found
+     */
     public ArrayList<Phone> getPhonesByBrand(String brand) {
         ArrayList<Phone> list = new ArrayList<>();
 
@@ -68,12 +79,16 @@ public class PhoneRepository {
             }
         }
 
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list;
+        return list.isEmpty() ? null : list;
     }
 
+    /**
+     * Retrieves a list of {@code Phone} objects that have the specified amount of RAM.
+     * If no matching phones are found, the method returns {@code null}.
+     *
+     * @param ramCount the RAM amount to filter phones by
+     * @return a list of phones with the given RAM amount or {@code null} if none are found
+     */
     public ArrayList<Phone> getPhonesByRamCount(int ramCount) {
         ArrayList<Phone> list = new ArrayList<>();
 
@@ -83,10 +98,7 @@ public class PhoneRepository {
             }
         }
 
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list;
+        return list.isEmpty() ? null : list;
     }
 
     /**
