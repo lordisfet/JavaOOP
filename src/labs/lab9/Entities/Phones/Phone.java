@@ -83,7 +83,6 @@ public class Phone {
         this.screenResolution = other.screenResolution;
     }
 
-
     /**
      * Gets the type of the phone.
      *

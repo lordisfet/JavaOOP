@@ -1,10 +1,5 @@
 package labs.lab9.Entities;
 
-import labs.lab9.Entities.Phones.FoldablePhone;
-import labs.lab9.Entities.Phones.GamingPhone;
-import labs.lab9.Entities.Phones.KeypadPhone;
-import labs.lab9.Entities.Phones.SmartPhone;
-import labs.lab9.Enums.ScreenResolution;
 import labs.lab9.Exceptions.NoPhonesAvailableException;
 import labs.lab9.Entities.Phones.Phone;
 
@@ -47,6 +42,51 @@ public class PhoneRepository {
         }
 
         return phones.get(id);
+    }
+
+    public ArrayList<Phone> getPhonesByType(String type) {
+        ArrayList<Phone> list = new ArrayList<>();
+
+        for (Phone phone : phones) {
+            if (phone.getType().equals(type)) {
+                list.add(phone);
+            }
+        }
+
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
+    }
+
+    public ArrayList<Phone> getPhonesByBrand(String brand) {
+        ArrayList<Phone> list = new ArrayList<>();
+
+        for (Phone phone : phones) {
+            if (phone.getBrand().equals(brand)) {
+                list.add(phone);
+            }
+        }
+
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
+    }
+
+    public ArrayList<Phone> getPhonesByCount(int ramCount) {
+        ArrayList<Phone> list = new ArrayList<>();
+
+        for (Phone phone : phones) {
+            if (phone.getRamAmount() == ramCount) {
+                list.add(phone);
+            }
+        }
+
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list;
     }
 
     /**

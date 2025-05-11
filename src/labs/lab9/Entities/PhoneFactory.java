@@ -1,7 +1,6 @@
 package labs.lab9.Entities;
 
 import labs.lab9.Entities.Phones.*;
-import labs.lab9.Entities.Phones.*;
 import labs.lab9.Enums.ScreenResolution;
 
 import java.util.ArrayList;
@@ -27,9 +26,9 @@ public class PhoneFactory {
      */
     public Phone createPhoneFromInput() {
         String type = setTypeWithValidation();
-        System.out.println("Cannot use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
         if (type.isEmpty()) return null; // Return to the main menu
 
+        System.out.println("Cannot use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
         System.out.print("Enter brand: ");
         String brand = setStringWithValidation();
         System.out.print("Enter model: ");

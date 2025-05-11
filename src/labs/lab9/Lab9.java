@@ -46,14 +46,23 @@ public class Lab9 {
 
         do {
             System.out.println("\nMENU");
-            System.out.println("1. Create new phone");
-            System.out.println("2. Show all phones");
-            System.out.println("3. Exit");
+            System.out.println("1. Search phone by");
+            System.out.println("2. Create new phone");
+            System.out.println("3. Show all phones");
+            System.out.println("4. Exit");
             System.out.print("\nChoose action: ");
             action = setIntWithValidation();
 
             switch (action) {
                 case 1 -> {
+                    System.out.print("""
+                            \t1. Type
+                            \t2. Brand
+                            \t3. RAM count
+                            """);
+                    System.out.println("\nCriteria for search: ");
+                }
+                case 2 -> {
                     try {
                         Phone newPhone = factory.createPhoneFromInput();
                         if (newPhone != null) {
@@ -66,7 +75,7 @@ public class Lab9 {
                         System.out.println("Obj creating error: " + e.getMessage());
                     }
                 }
-                case 2 -> {
+                case 3 -> {
                     try {
                         System.out.println("List of phones:\n");
                         for (Phone phone : repository.getAll()) {
@@ -76,7 +85,7 @@ public class Lab9 {
                         System.out.println("Exception: " + e.getMessage());
                     }
                 }
-                case 3 -> {
+                case 4 -> {
                     System.out.println("Exiting...");
                     try {
                         InitialFile file = new InitialFile(fileName);
