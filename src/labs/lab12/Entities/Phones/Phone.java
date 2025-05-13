@@ -271,7 +271,6 @@ public class Phone {
                 "screenResolution:" + screenResolution + ';';
     }
 
-
     /**
      * Compares the current {@code Phone} object with another object for equality.
      * The comparison is based on the values of all the fields.

@@ -2,12 +2,13 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №11
- * Час виконання: 20 хвилин
+ * Лабораторна:   №12
+ * Час виконання: 1 ujlbyf 20 хвилин
  *
  * Опис:
- * Додати до програми можливість пошуку за трьома, як мінімум,
- * критеріями та вивід їх результату виконанняна екран
+ * Додати клас Store який агрегує ArrayList<Phone>
+ та реалізувати методи для додавання нових об`єктів типу Phone,
+ * їх пошук, можливість запису кількості елементів одного типу.
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
@@ -39,17 +40,13 @@ public class Lab12 {
             Map<String, String> storageSetting = file.readStoreData();
             store = new Store(storageSetting.get("name"), storageSetting.get("address"),
                     factory.createPhoneFromAttributes(file.readPhonesData()));
-            for (InventoryEntry phone : factory.createPhoneFromAttributes(file.readPhonesData())) {
-                store.addNewPhone(phone);
-            }
         } catch (Exception e) {
             System.out.println("File error: " + e.getMessage());
         }
 
-        System.out.println(store);
-
         do {
-            System.out.println("\nMENU");
+            System.out.println("\n" + store);
+            System.out.println("MENU");
             System.out.println("1. Search phone by");
             System.out.println("2. Create new phone");
             System.out.println("3. Show all phones");
@@ -148,7 +145,7 @@ public class Lab12 {
                     System.out.println("Exiting...");
                     try {
                         InitialFile file = new InitialFile(fileName);
-                        file.writeData(store.getAll());
+                        file.writeData(store, store.getAll());
                     } catch (IOException e) {
                         System.out.println("File error: " + e.getMessage());
                     }

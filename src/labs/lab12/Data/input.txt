@@ -1,9 +1,8 @@
-name:My;address:CJ street
-type:SmartPhone;brand:Apple;model:Iphone 16;price:1800.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;amount:8;
-type:KeypadPhone;brand:Alcatel;model:GoFlip 3;price:89.99;ramAmount:0;romAmount:4;screenResolution:WVGA;buttonCount:50;supportedBandCount:8;amount:2;
-type:SmartPhone;brand:Samsung;model:Galaxy Grand Prime;price:100.0;ramAmount:1;romAmount:8;screenResolution:HD;cpuCores:4;frontCameraMP:8;amount:1;
-type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1300.0;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;amount:12;
+name:My;address:CJ street 15;
+type:KeypadPhone;brand:Alcatel;model:GoFlip 3;price:89.99;ramAmount:0;romAmount:4;screenResolution:WVGA;buttonCount:50;supportedBandCount:8;amount:11;
+type:SmartPhone;brand:Samsung;model:Galaxy Grand Prime;price:100.0;ramAmount:1;romAmount:8;screenResolution:HD;cpuCores:4;frontCameraMP:8;amount:2;
+type:SmartPhone;brand:Samsung;model:Galaxy S24;price:1300.0;ramAmount:12;romAmount:512;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;amount:34;
 type:KeypadPhone;brand:Nokia;model:3310;price:50.0;ramAmount:1;romAmount:2;screenResolution:FWVGA;buttonCount:20;supportedBandCount:2;amount:1;
-type:FoldablePhone;brand:Huawei;model:Mate X3;price:2000.0;ramAmount:12;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;foldableScreens:2;amount:4;
-type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1110.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:32;GamingCooling:No;amount:3;
-type:SmartPhone;brand:LG;model:G7;price:300.0;ramAmount:2;romAmount:32;screenResolution:FULL_HD;cpuCores:8;frontCameraMP:16;amount:3;
+type:FoldablePhone;brand:Huawei;model:Mate X3;price:2000.0;ramAmount:12;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:64;foldableScreens:2;amount:16;
+type:GamingPhone;brand:ASUS;model:ROG Phone 7;price:1110.0;ramAmount:16;romAmount:1024;screenResolution:QUAD_HD;cpuCores:8;frontCameraMP:32;GamingCooling:No;amount:13;
+type:SmartPhone;brand:LG;model:G7;price:300.0;ramAmount:2;romAmount:32;screenResolution:FULL_HD;cpuCores:8;frontCameraMP:16;amount:37;

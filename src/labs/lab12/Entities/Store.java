@@ -7,74 +7,161 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * The {@code PhoneRepository} class manages a collection of {@link Phone} objects.
- * It provides functionality for adding, retrieving, and storing phone instances.
+ * The {@code Store} class represents a phone store that manages an inventory of phones.
+ * Each phone in the store is wrapped in an {@link InventoryEntry} object, which contains a {@link Phone}
+ * instance and its corresponding quantity.
+ * <p>
+ * This class provides functionality for adding new phones (or updating quantities if the phone already exists),
+ * as well as retrieving phones based on various criteria such as type, brand, or RAM count.
+ * It also allows retrieving the complete inventory and converting the store details to a file-friendly format.
+ * </p>
  */
 public class Store {
+    /**
+     * The name of the store.
+     */
     private String name;
+
+    /**
+     * The address of the store.
+     */
     private String address;
+
+    /**
+     * The list of inventory entries representing the phones stored in the store.
+     */
     private ArrayList<InventoryEntry> phones = new ArrayList<>();
 
+    /**
+     * Constructs a new {@code Store} with the specified name, address, and initial inventory.
+     *
+     * @param name   the name of the store
+     * @param address the address of the store
+     * @param phones a list of {@link InventoryEntry} objects representing the store's initial inventory
+     */
     public Store(String name, String address, ArrayList<InventoryEntry> phones) {
         this.name = name;
         this.address = address;
         this.phones = phones;
     }
 
+    /**
+     * Returns the name of the store.
+     *
+     * @return the store's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the store's name.
+     *
+     * @param name the new name for the store
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns the address of the store.
+     *
+     * @return the store's address
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Sets the store's address.
+     *
+     * @param address the new address for the store
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
+    /**
+     * Returns the list of inventory entries in the store.
+     *
+     * @return an {@link ArrayList} containing all {@link InventoryEntry} objects in the store
+     */
     public ArrayList<InventoryEntry> getPhones() {
         return phones;
     }
 
+    /**
+     * Sets the inventory of the store.
+     *
+     * @param phones an {@link ArrayList} of {@link InventoryEntry} objects to be set as the store's inventory
+     */
     public void setPhones(ArrayList<InventoryEntry> phones) {
         this.phones = phones;
     }
 
+    /**
+     * Returns a string representation of the store that includes its name, address.
+     *
+     * @return a string describing the store
+     */
     @Override
     public String toString() {
-        return "Store{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phones=" + phones +
-                '}';
+        return "Store \"" + name + '\"' + " at the address " + address;
     }
 
+    /**
+     * Returns a file-friendly string representation of the store details.
+     * The format is: "name:{name};address:{address};"
+     *
+     * @return a string for file output containing the store's name and address
+     */
+    public String toStringToFile() {
+        return "name:" + name + ';' + "address:" + address + ';';
+    }
+
+    /**
+     * Compares this store to the specified object for equality.
+     * Two stores are considered equal if they have the same name, address, and inventory.
+     *
+     * @param o the object to compare with
+     * @return {@code true} if the specified object is equal to this store; {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Store store = (Store) o;
-        return Objects.equals(name, store.name) && Objects.equals(address, store.address) && Objects.equals(phones, store.phones);
+        return Objects.equals(name, store.name) &&
+                Objects.equals(address, store.address) &&
+                Objects.equals(phones, store.phones);
     }
 
+    /**
+     * Returns a hash code value for this store based on its name, address, and inventory.
+     *
+     * @return a hash code value for this store
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name, address, phones);
     }
 
     /**
-     * Adds a new {@code Phone} object to the repository.
-     * Throws an exception if the provided phone is {@code null}.
+     * Adds a new {@link InventoryEntry} to the store.
+     * <p>
+     * If an entry with the same {@link Phone} (as determined by {@code equals} method on {@link Phone})
+     * already exists in the store, the method updates the quantity by adding the new amount.
+     * Otherwise, the new entry is added to the inventory.
+     * </p>
+     * <p>
+     * Both the {@code InventoryEntry} and its contained quantity must be valid: {@code phone} must not be {@code null}
+     * and its amount must be greater than or equal to zero.
+     * </p>
      *
-     * @param phone the {@code Phone} object to be added
-     * @throws IllegalArgumentException if the provided phone is {@code null}
+     * @param phone the {@link InventoryEntry} to be added to the store
+     * @throws IllegalArgumentException if the provided {@code InventoryEntry} is {@code null} or its amount is negative
      */
     public void addNewPhone(InventoryEntry phone) {
-        if (phone != null && phone.getAmount() >= 0) {
+        if (phone != null && phone.getAmount() > 0) {
             InventoryEntry temp = samePhoneInStore(phone);
             if (temp != null) {
                 temp.setAmount(temp.getAmount() + phone.getAmount());
@@ -86,51 +173,50 @@ public class Store {
         }
     }
 
+    /**
+     * Searches the store's inventory for an {@link InventoryEntry} that contains a {@link Phone} equal to the one in the given entry.
+     * <p>
+     * The comparison is based on the {@code equals} method of the {@link Phone} class.
+     * </p>
+     *
+     * @param phone an {@link InventoryEntry} containing the {@link Phone} to search for
+     * @return the matching {@link InventoryEntry} from the store's inventory if found; {@code null} otherwise
+     */
     private InventoryEntry samePhoneInStore(InventoryEntry phone) {
         for (InventoryEntry element : phones) {
             if (phone.getPhone().equals(element.getPhone())) {
                 return element;
             }
         }
-
         return null;
     }
 
-    /*private ArrayList<Phone> fromInventoryToCatalog() {
-        ArrayList<Phone> catalog = new ArrayList<>();
-        for (InventoryEntry element : phones) {
-            catalog.add(element.getPhone());
-        }
-
-        return catalog;
-    }*/
-
     /**
-     * Retrieves a list of {@code Phone} objects that match the specified type.
-     * If no matching phones are found, the method returns {@code null}.
+     * Retrieves a list of {@link InventoryEntry} objects whose contained {@link Phone} objects match the specified type.
      *
      * @param type the type of phone to filter by
-     * @return a list of phones matching the given type or {@code null} if none are found
+     * @return an {@link ArrayList} of inventory entries with phones matching the given type,
+     *         or {@code null} if no matching entries are found
      */
     public ArrayList<InventoryEntry> getPhonesByType(String type) {
         ArrayList<InventoryEntry> list = new ArrayList<>();
-//        ArrayList<Phone> catalog = fromInventoryToCatalog();
+        // Optionally, you can convert the inventory entries to a catalog of Phone objects if needed
+        // ArrayList<Phone> catalog = fromInventoryToCatalog();
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getType().equals(type)) {
                 list.add(element);
             }
         }
-
         return list.isEmpty() ? null : list;
     }
 
     /**
-     * Retrieves a list of {@code Phone} objects that match the specified brand.
-     * If no matching phones are found, the method returns {@code null}.
+     * Retrieves a list of {@link InventoryEntry} objects whose contained {@link Phone} objects match the specified brand.
      *
-     * @param brand the brand of phone to filter by
-     * @return a list of phones matching the given brand or {@code null} if none are found
+     * @param brand the brand of the phone to filter by
+     * @return an {@link ArrayList} of inventory entries with phones matching the given brand,
+     *         or {@code null} if no matching entries are found
      */
     public ArrayList<InventoryEntry> getPhonesByBrand(String brand) {
         ArrayList<InventoryEntry> list = new ArrayList<>();
@@ -140,16 +226,15 @@ public class Store {
                 list.add(element);
             }
         }
-
         return list.isEmpty() ? null : list;
     }
 
     /**
-     * Retrieves a list of {@code Phone} objects that have the specified amount of RAM.
-     * If no matching phones are found, the method returns {@code null}.
+     * Retrieves a list of {@link InventoryEntry} objects whose contained {@link Phone} objects have the specified amount of RAM.
      *
-     * @param ramCount the RAM amount to filter phones by
-     * @return a list of phones with the given RAM amount or {@code null} if none are found
+     * @param ramCount the RAM amount to filter by
+     * @return an {@link ArrayList} of inventory entries with the specified RAM count,
+     *         or {@code null} if no matching entries are found
      */
     public ArrayList<InventoryEntry> getPhonesByRamCount(int ramCount) {
         ArrayList<InventoryEntry> list = new ArrayList<>();
@@ -159,23 +244,22 @@ public class Store {
                 list.add(element);
             }
         }
-
         return list.isEmpty() ? null : list;
     }
 
     /**
-     * Retrieves all phones stored in the repository.
-     * Throws an exception if no phones are available.
+     * Retrieves all inventory entries (phones) stored in the store.
+     * <p>
+     * If the store's inventory is empty, a {@link NoPhonesAvailableException} is thrown.
+     * </p>
      *
-     * @return a list of all {@code Phone} objects in the repository
-     * @throws NoPhonesAvailableException if the repository is empty
+     * @return a new {@link ArrayList} containing all {@link InventoryEntry} objects in the store
+     * @throws NoPhonesAvailableException if there are no phones available in the store
      */
     public ArrayList<InventoryEntry> getAll() {
         if (phones.isEmpty()) {
             throw new NoPhonesAvailableException("List of phones is empty");
         }
-
         return new ArrayList<>(phones);
     }
 }
-

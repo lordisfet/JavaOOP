@@ -17,16 +17,20 @@ import static labs.lab12.Entities.InitialFile.getfieldSeparator;
 public class PhoneFactory {
 
     /**
-     * Creates a {@link Phone} instance based on user input.
-     * Users specify phone attributes interactively, including brand, model, price, RAM, ROM, and screen resolution.
-     * Throws an exception if the provided phone type is invalid.
+     * Creates an {@link InventoryEntry} instance based on interactive user input.
+     * <p>
+     * This method prompts the user for the phone type and then for various attributes such as brand, model, price, RAM, ROM, and screen resolution.
+     * It verifies that numeric inputs (price, RAM, and ROM) are non-negative and displays a list of supported screen resolutions. If the user enters an
+     * empty type, the method returns {@code null} (e.g. indicating that the input process should be aborted). Based on the type provided, a specific
+     * phone instance is created using a switch expression. If an unknown type is entered, an {@link IllegalArgumentException} is thrown.
+     * </p>
      *
-     * @return a new {@code Phone} object based on user input, or {@code null} if input is empty
-     * @throws IllegalArgumentException if the phone type does not exist
+     * @return a new {@code InventoryEntry} containing the created {@link Phone} and its amount, or {@code null} if the user provided an empty type
+     * @throws IllegalArgumentException if the phone type is unrecognized or invalid
      */
     public InventoryEntry createPhoneFromInput() {
         String type = setTypeWithValidation();
-        if (type.isEmpty()) return null; // Return to the main menu
+        if (type.isEmpty()) return null; // Return to the main menu if no type is provided
 
         System.out.println("Cannot use '" + getfieldSeparator() + "' or '" + getValueSeparator() + "' in data");
         System.out.print("Enter brand: ");
@@ -51,6 +55,7 @@ public class PhoneFactory {
             System.out.print("ROM cannot be negative. Enter ROM again: ");
             romAmount = setIntWithValidation();
         }
+
         System.out.println("List of screen resolutions: ");
         int i = 1;
         for (ScreenResolution scrRes : ScreenResolution.values()) {
@@ -74,16 +79,21 @@ public class PhoneFactory {
         int amount = setIntWithValidation();
 
         return new InventoryEntry(newPhone, amount);
-//        return new InventoryEntry(new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution), amount);
     }
 
     /**
-     * Creates a list of {@code Phone} objects from structured attribute mappings.
-     * Parses key-value attribute pairs and constructs appropriate phone instances dynamically.
+     * Creates a list of {@link InventoryEntry} objects by parsing a list of attribute maps.
+     * <p>
+     * For each map provided in the {@code attrs} list, this method extracts key-value pairs representing phone attributes (type, brand,
+     * model, price, RAM, ROM, screen resolution, and amount). Based on the "type" attribute, it dynamically constructs the corresponding phone object.
+     * For specific types (e.g. "SmartPhone", "KeypadPhone", "GamingPhone", "FoldablePhone"), additional attributes such as CPU cores,
+     * camera megapixels, and other features are parsed and used during phone construction. If an unexpected phone type is encountered, an
+     * {@link IllegalArgumentException} is thrown.
+     * </p>
      *
-     * @param attrs a list of maps containing phone attributes
-     * @return a list of {@code Phone} objects based on the provided attributes
-     * @throws IllegalArgumentException if an unexpected phone type is encountered
+     * @param attrs an {@link ArrayList} of maps where each map contains key-value pairs corresponding to the attributes of a phone
+     * @return an {@link ArrayList} of {@link InventoryEntry} objects created based on the provided attribute mappings
+     * @throws IllegalArgumentException if an attribute map contains an unrecognized phone type
      */
     public ArrayList<InventoryEntry> createPhoneFromAttributes(ArrayList<Map<String, String>> attrs) {
         ArrayList<InventoryEntry> listOfPhones = new ArrayList<>();
@@ -127,6 +137,7 @@ public class PhoneFactory {
 
         return listOfPhones;
     }
+
 
     /**
      * Creates a {@link SmartPhone} instance with user-provided specifications.
