@@ -109,13 +109,13 @@ public class Store {
      * @param type the type of phone to filter by
      * @return a list of phones matching the given type or {@code null} if none are found
      */
-    public ArrayList<Phone> getPhonesByType(String type) {
-        ArrayList<Phone> list = new ArrayList<>();
+    public ArrayList<InventoryEntry> getPhonesByType(String type) {
+        ArrayList<InventoryEntry> list = new ArrayList<>();
 //        ArrayList<Phone> catalog = fromInventoryToCatalog();
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getType().equals(type)) {
-                list.add(element.getPhone());
+                list.add(element);
             }
         }
 
@@ -129,12 +129,12 @@ public class Store {
      * @param brand the brand of phone to filter by
      * @return a list of phones matching the given brand or {@code null} if none are found
      */
-    public ArrayList<Phone> getPhonesByBrand(String brand) {
-        ArrayList<Phone> list = new ArrayList<>();
+    public ArrayList<InventoryEntry> getPhonesByBrand(String brand) {
+        ArrayList<InventoryEntry> list = new ArrayList<>();
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getBrand().equals(brand)) {
-                list.add(element.getPhone());
+                list.add(element);
             }
         }
 
@@ -148,12 +148,12 @@ public class Store {
      * @param ramCount the RAM amount to filter phones by
      * @return a list of phones with the given RAM amount or {@code null} if none are found
      */
-    public ArrayList<Phone> getPhonesByRamCount(int ramCount) {
-        ArrayList<Phone> list = new ArrayList<>();
+    public ArrayList<InventoryEntry> getPhonesByRamCount(int ramCount) {
+        ArrayList<InventoryEntry> list = new ArrayList<>();
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getRamAmount() == ramCount) {
-                list.add(element.getPhone());
+                list.add(element);
             }
         }
 
@@ -167,17 +167,12 @@ public class Store {
      * @return a list of all {@code Phone} objects in the repository
      * @throws NoPhonesAvailableException if the repository is empty
      */
-    public ArrayList<Phone> getAll() {
+    public ArrayList<InventoryEntry> getAll() {
         if (phones.isEmpty()) {
             throw new NoPhonesAvailableException("List of phones is empty");
         }
 
-        ArrayList<Phone> catalog = new ArrayList<>();
-        for (InventoryEntry element : phones) {
-            catalog.add(element.getPhone());
-        }
-
-        return catalog;
+        return new ArrayList<>(phones);
     }
 }
 

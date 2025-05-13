@@ -73,7 +73,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (Phone phone : repository.getPhonesByType(valueOfCriteria)) {
+                                for (InventoryEntry phone : repository.getPhonesByType(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -87,7 +87,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (Phone phone : repository.getPhonesByBrand(valueOfCriteria)) {
+                                for (InventoryEntry phone : repository.getPhonesByBrand(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -101,7 +101,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (Phone phone : repository.getPhonesByRamCount(valueOfCriteria)) {
+                                for (InventoryEntry phone : repository.getPhonesByRamCount(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -116,9 +116,9 @@ public class Lab12 {
                 }
                 case 2 -> {
                     try {
-                        Phone newPhone = factory.createPhoneFromInput();
+                        InventoryEntry newPhone = factory.createPhoneFromInput();
                         if (newPhone != null) {
-                            repository.add(newPhone);
+                            repository.addNewPhone(newPhone);
                             System.out.println("\nObj was been added");
                         } else {
                             System.out.println("Returning to menu...");
@@ -130,7 +130,7 @@ public class Lab12 {
                 case 3 -> {
                     try {
                         System.out.println("\nList of phones:\n");
-                        for (Phone phone : repository.getAll()) {
+                        for (InventoryEntry phone : repository.getAll()) {
                             System.out.println(phone);
                         }
                     } catch (Exception e) {

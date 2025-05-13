@@ -47,10 +47,11 @@ public class InventoryEntry {
 
     @Override
     public String toString() {
-        return "InventoryEntry{" +
-                "phone=" + phone +
-                ", amount=" + amount +
-                '}';
+        return phone + "amount: " + amount + "\n";
+    }
+
+    public String toStringToFile() {
+        return phone.toStringToFile() + "amount:" + amount + ';';
     }
 
     @Override

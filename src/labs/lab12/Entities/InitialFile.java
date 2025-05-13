@@ -163,10 +163,10 @@ public class InitialFile {
      * @param phones the list of {@code Phone} objects to write
      * @throws IOException if an error occurs while writing to the file
      */
-    public void writeData(ArrayList<Phone> phones) throws IOException {
+    public void writeData(ArrayList<InventoryEntry> phones) throws IOException {
         try (FileWriter writer = new FileWriter(file);
              BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-            for (Phone phone : phones) {
+            for (InventoryEntry phone : phones) {
                 bufferedWriter.write("");
                 bufferedWriter.append(phone.toStringToFile()).append('\n');
             }
