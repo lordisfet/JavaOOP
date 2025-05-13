@@ -46,6 +46,14 @@ public class InventoryEntry {
     }
 
     @Override
+    public String toString() {
+        return "InventoryEntry{" +
+                "phone=" + phone +
+                ", amount=" + amount +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         InventoryEntry that = (InventoryEntry) o;
@@ -55,13 +63,5 @@ public class InventoryEntry {
     @Override
     public int hashCode() {
         return Objects.hash(phone, amount);
-    }
-
-    @Override
-    public String toString() {
-        return "InventoryEntry{" +
-                "phone=" + phone +
-                ", amount=" + amount +
-                '}';
     }
 }

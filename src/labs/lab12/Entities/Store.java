@@ -4,13 +4,61 @@ import labs.lab12.Exceptions.NoPhonesAvailableException;
 import labs.lab12.Entities.Phones.Phone;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * The {@code PhoneRepository} class manages a collection of {@link Phone} objects.
  * It provides functionality for adding, retrieving, and storing phone instances.
  */
 public class Store {
-    private ArrayList<InventoryEntry> phones = new ArrayList<>();
+    private String name;
+    private String address;
+    private ArrayList<InventoryEntry> phones;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public ArrayList<InventoryEntry> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(ArrayList<InventoryEntry> phones) {
+        this.phones = phones;
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phones=" + phones +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Store store = (Store) o;
+        return Objects.equals(name, store.name) && Objects.equals(address, store.address) && Objects.equals(phones, store.phones);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address, phones);
+    }
 
     /**
      * Adds a new {@code Phone} object to the repository.
