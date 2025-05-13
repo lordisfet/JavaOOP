@@ -19,7 +19,9 @@ import labs.lab12.Entities.PhoneFactory;
 import labs.lab12.Entities.Phones.*;
 import labs.lab12.Entities.InitialFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 
 import labs.lab12.Entities.Store;
 
@@ -27,19 +29,24 @@ import static labs.lab12.Entities.PhoneFactory.*;
 
 public class Lab12 {
     public static void main(String[] args) {
-        Store repository = new Store();
         PhoneFactory factory = new PhoneFactory();
+        Store store = null;
         int action;
-        String fileName = "src/labs/lab9/Data/input.txt";
+        String fileName = "src/labs/lab12/Data/input.txt";
 
         try {
             InitialFile file = new InitialFile(fileName);
-            for (InventoryEntry phone : factory.createPhoneFromAttributes(file.readAllData())) {
-                repository.addNewPhone(phone);
+            Map<String, String> storageSetting = file.readStoreData();
+            store = new Store(storageSetting.get("name"), storageSetting.get("address"),
+                    factory.createPhoneFromAttributes(file.readPhonesData()));
+            for (InventoryEntry phone : factory.createPhoneFromAttributes(file.readPhonesData())) {
+                store.addNewPhone(phone);
             }
         } catch (Exception e) {
             System.out.println("File error: " + e.getMessage());
         }
+
+        System.out.println(store);
 
         do {
             System.out.println("\nMENU");
@@ -73,7 +80,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (InventoryEntry phone : repository.getPhonesByType(valueOfCriteria)) {
+                                for (InventoryEntry phone : store.getPhonesByType(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -87,7 +94,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (InventoryEntry phone : repository.getPhonesByBrand(valueOfCriteria)) {
+                                for (InventoryEntry phone : store.getPhonesByBrand(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -101,7 +108,7 @@ public class Lab12 {
                             System.out.println("\nList of phones by type:\n");
 
                             try {
-                                for (InventoryEntry phone : repository.getPhonesByRamCount(valueOfCriteria)) {
+                                for (InventoryEntry phone : store.getPhonesByRamCount(valueOfCriteria)) {
                                     System.out.println(phone);
                                 }
                             } catch (NullPointerException e) {
@@ -118,7 +125,7 @@ public class Lab12 {
                     try {
                         InventoryEntry newPhone = factory.createPhoneFromInput();
                         if (newPhone != null) {
-                            repository.addNewPhone(newPhone);
+                            store.addNewPhone(newPhone);
                             System.out.println("\nObj was been added");
                         } else {
                             System.out.println("Returning to menu...");
@@ -130,7 +137,7 @@ public class Lab12 {
                 case 3 -> {
                     try {
                         System.out.println("\nList of phones:\n");
-                        for (InventoryEntry phone : repository.getAll()) {
+                        for (InventoryEntry phone : store.getAll()) {
                             System.out.println(phone);
                         }
                     } catch (Exception e) {
@@ -141,7 +148,7 @@ public class Lab12 {
                     System.out.println("Exiting...");
                     try {
                         InitialFile file = new InitialFile(fileName);
-                        file.writeData(repository.getAll());
+                        file.writeData(store.getAll());
                     } catch (IOException e) {
                         System.out.println("File error: " + e.getMessage());
                     }

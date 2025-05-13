@@ -51,7 +51,6 @@ public class PhoneFactory {
             System.out.print("ROM cannot be negative. Enter ROM again: ");
             romAmount = setIntWithValidation();
         }
-
         System.out.println("List of screen resolutions: ");
         int i = 1;
         for (ScreenResolution scrRes : ScreenResolution.values()) {
@@ -60,10 +59,8 @@ public class PhoneFactory {
         }
         System.out.print("Enter screen resolution number (1-8): ");
         ScreenResolution screenResolution = setScrResWithValidation();
-        System.out.print("Enter amount of phones: ");
-        int amount = setIntWithValidation();
 
-        return new InventoryEntry(switch (type) {
+        Phone newPhone = switch (type) {
             case "Phone" -> new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
@@ -71,7 +68,13 @@ public class PhoneFactory {
             case "FoldablePhone" ->
                     createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             default -> throw new IllegalArgumentException("Type of phone does not exist");
-        }, amount);
+        };
+
+        System.out.print("Enter amount of phones: ");
+        int amount = setIntWithValidation();
+
+        return new InventoryEntry(newPhone, amount);
+//        return new InventoryEntry(new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution), amount);
     }
 
     /**

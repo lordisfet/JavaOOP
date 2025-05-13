@@ -13,7 +13,13 @@ import java.util.Objects;
 public class Store {
     private String name;
     private String address;
-    private ArrayList<InventoryEntry> phones;
+    private ArrayList<InventoryEntry> phones = new ArrayList<>();
+
+    public Store(String name, String address, ArrayList<InventoryEntry> phones) {
+        this.name = name;
+        this.address = address;
+        this.phones = phones;
+    }
 
     public String getName() {
         return name;
@@ -68,30 +74,27 @@ public class Store {
      * @throws IllegalArgumentException if the provided phone is {@code null}
      */
     public void addNewPhone(InventoryEntry phone) {
-        if (phone != null || phone.getAmount() >= 0) {
+        if (phone != null && phone.getAmount() >= 0) {
+            InventoryEntry temp = samePhoneInStore(phone);
+            if (temp != null) {
+                temp.setAmount(temp.getAmount() + phone.getAmount());
+                return;
+            }
             phones.add(phone);
         } else {
             throw new IllegalArgumentException("Phone can`t be null or amount can`t be less then 0");
         }
     }
 
-    /*
-    /**
-     * Retrieves a {@code Phone} object by its unique index.
-     * Throws an exception if the provided ID is out of bounds.
-     *
-     * @param id the index of the phone in the repository
-     * @return the {@code Phone} object corresponding to the given index
-     * @throws IllegalArgumentException if the ID is invalid or does not exist
-     */
-    /*public Phone getPhoneByID(int id) {
-        if (id >= phones.size() || id < 0) {
-            throw new IllegalArgumentException("Phone with id = " + id +
-                    " not exist. Size of repository is " + phones.size() + " phone(s)");
+    private InventoryEntry samePhoneInStore(InventoryEntry phone) {
+        for (InventoryEntry element : phones) {
+            if (phone.getPhone().equals(element.getPhone())) {
+                return element;
+            }
         }
 
-        return phones.get(id);
-    }*/
+        return null;
+    }
 
     /*private ArrayList<Phone> fromInventoryToCatalog() {
         ArrayList<Phone> catalog = new ArrayList<>();

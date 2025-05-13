@@ -23,7 +23,7 @@ public class InitialFile {
      * Throws an exception if the file name is empty or null.
      *
      * @param fileName the name of the file to manage
-     * @throws FileNotFoundException if the file cannot be found
+     * @throws FileNotFoundException    if the file cannot be found
      * @throws IllegalArgumentException if the file name is empty or null
      */
     public InitialFile(String fileName) throws FileNotFoundException {
@@ -91,14 +91,18 @@ public class InitialFile {
      *
      * @return the field separator character
      */
-    public static String getfieldSeparator() { return fieldSeparator; }
+    public static String getfieldSeparator() {
+        return fieldSeparator;
+    }
 
     /**
      * Retrieves the value separator used in file parsing.
      *
      * @return the value separator character
      */
-    public static String getValueSeparator() { return valueSeparator; }
+    public static String getValueSeparator() {
+        return valueSeparator;
+    }
 
     /**
      * Generates a string representation of the {@code InitialFile} instance.
@@ -138,23 +142,38 @@ public class InitialFile {
 
     /**
      * Reads all data from the file and returns a list of parsed attributes.
-     * Parses each line in the file using {@link #parsePhoneData(String)}.
+     * Parses each line in the file using {@link #parseData(String)}.
      *
      * @return a list containing maps of phone attributes
      * @throws IOException if an error occurs while reading the file
      */
-    public ArrayList<Map<String, String>> readAllData() throws IOException {
+    public ArrayList<Map<String, String>> readPhonesData() throws IOException {
         ArrayList<Map<String, String>> listOfAttributes;
         try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
+            bufferedReader.readLine();
             listOfAttributes = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                listOfAttributes.add(parsePhoneData(line));
+                listOfAttributes.add(parseData(line));
             }
         }
 
         return listOfAttributes;
+    }
+
+    public Map<String, String> readStoreData() throws IOException {
+        try (FileReader reader = new FileReader(file);
+             BufferedReader bufferedReader = new BufferedReader(reader)) {
+
+            String line;
+            if ((line = bufferedReader.readLine()) != null) {
+                return parseData(line);
+            }
+            else {
+                throw new IllegalArgumentException("Line with store settings is null");
+            }
+        }
     }
 
     /**
@@ -179,7 +198,7 @@ public class InitialFile {
      * @param line the line of text containing phone details
      * @return a map of phone attributes parsed from the line
      */
-    private Map<String, String> parsePhoneData(String line) {
+    private Map<String, String> parseData(String line) {
         Map<String, String> attributes = new HashMap<>();
         String[] pairs = line.split(fieldSeparator);
         for (String pair : pairs) {
