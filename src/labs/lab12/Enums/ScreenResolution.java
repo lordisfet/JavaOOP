@@ -1,4 +1,4 @@
-package labs.lab9_11.Enums;
+package labs.lab12.Enums;
 
 /**
  * The {@code ScreenResolution} enum represents different screen resolutions commonly used in mobile phones.

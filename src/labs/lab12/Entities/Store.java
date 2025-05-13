@@ -1,7 +1,7 @@
-package labs.lab9_11.Entities;
+package labs.lab12.Entities;
 
-import labs.lab9_11.Exceptions.NoPhonesAvailableException;
-import labs.lab9_11.Entities.Phones.Phone;
+import labs.lab12.Exceptions.NoPhonesAvailableException;
+import labs.lab12.Entities.Phones.Phone;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * The {@code PhoneRepository} class manages a collection of {@link Phone} objects.
  * It provides functionality for adding, retrieving, and storing phone instances.
  */
-public class PhoneRepository {
-    private ArrayList<Phone> phones = new ArrayList<>();
+public class Store {
+    private ArrayList<InventoryEntry> phones = new ArrayList<>();
 
     /**
      * Adds a new {@code Phone} object to the repository.
@@ -19,14 +19,15 @@ public class PhoneRepository {
      * @param phone the {@code Phone} object to be added
      * @throws IllegalArgumentException if the provided phone is {@code null}
      */
-    public void add(Phone phone) {
-        if (phone != null) {
-            phones.add(phone);
+    public void add(Phone phone, Integer amount) {
+        if (phone != null || amount >= 0) {
+            phones.add(new InventoryEntry(phone, amount));
         } else {
-            throw new IllegalArgumentException("Phone can`t be null");
+            throw new IllegalArgumentException("Phone can`t be null or amount can`t be less then 0");
         }
     }
 
+    /*
     /**
      * Retrieves a {@code Phone} object by its unique index.
      * Throws an exception if the provided ID is out of bounds.
@@ -35,14 +36,23 @@ public class PhoneRepository {
      * @return the {@code Phone} object corresponding to the given index
      * @throws IllegalArgumentException if the ID is invalid or does not exist
      */
-    public Phone getPhoneByID(int id) {
+    /*public Phone getPhoneByID(int id) {
         if (id >= phones.size() || id < 0) {
             throw new IllegalArgumentException("Phone with id = " + id +
                     " not exist. Size of repository is " + phones.size() + " phone(s)");
         }
 
         return phones.get(id);
-    }
+    }*/
+
+    /*private ArrayList<Phone> fromInventoryToCatalog() {
+        ArrayList<Phone> catalog = new ArrayList<>();
+        for (InventoryEntry element : phones) {
+            catalog.add(element.getPhone());
+        }
+
+        return catalog;
+    }*/
 
     /**
      * Retrieves a list of {@code Phone} objects that match the specified type.
@@ -53,10 +63,11 @@ public class PhoneRepository {
      */
     public ArrayList<Phone> getPhonesByType(String type) {
         ArrayList<Phone> list = new ArrayList<>();
+//        ArrayList<Phone> catalog = fromInventoryToCatalog();
 
-        for (Phone phone : phones) {
-            if (phone.getType().equals(type)) {
-                list.add(phone);
+        for (InventoryEntry element : phones) {
+            if (element.getPhone().getType().equals(type)) {
+                list.add(element.getPhone());
             }
         }
 
@@ -73,9 +84,9 @@ public class PhoneRepository {
     public ArrayList<Phone> getPhonesByBrand(String brand) {
         ArrayList<Phone> list = new ArrayList<>();
 
-        for (Phone phone : phones) {
-            if (phone.getBrand().equals(brand)) {
-                list.add(phone);
+        for (InventoryEntry element : phones) {
+            if (element.getPhone().getBrand().equals(brand)) {
+                list.add(element.getPhone());
             }
         }
 
@@ -92,9 +103,9 @@ public class PhoneRepository {
     public ArrayList<Phone> getPhonesByRamCount(int ramCount) {
         ArrayList<Phone> list = new ArrayList<>();
 
-        for (Phone phone : phones) {
-            if (phone.getRamAmount() == ramCount) {
-                list.add(phone);
+        for (InventoryEntry element : phones) {
+            if (element.getPhone().getRamAmount() == ramCount) {
+                list.add(element.getPhone());
             }
         }
 
@@ -113,7 +124,12 @@ public class PhoneRepository {
             throw new NoPhonesAvailableException("List of phones is empty");
         }
 
-        return phones;
+        ArrayList<Phone> catalog = new ArrayList<>();
+        for (InventoryEntry element : phones) {
+            catalog.add(element.getPhone());
+        }
+
+        return catalog;
     }
 }
 

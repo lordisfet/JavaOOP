@@ -12,21 +12,21 @@
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
 
-package labs.lab9_11;
+package labs.lab12;
 
-import labs.lab9_11.Entities.PhoneFactory;
-import labs.lab9_11.Entities.Phones.*;
-import labs.lab9_11.Entities.InitialFile;
+import labs.lab12.Entities.PhoneFactory;
+import labs.lab12.Entities.Phones.*;
+import labs.lab12.Entities.InitialFile;
 
 import java.io.IOException;
 
-import labs.lab9_11.Entities.PhoneRepository;
+import labs.lab12.Entities.Store;
 
-import static labs.lab9_11.Entities.PhoneFactory.*;
+import static labs.lab12.Entities.PhoneFactory.*;
 
-public class Lab9 {
+public class Lab12 {
     public static void main(String[] args) {
-        PhoneRepository repository = new PhoneRepository();
+        Store repository = new Store();
         PhoneFactory factory = new PhoneFactory();
         int action;
         String fileName = "src/labs/lab9/Data/input.txt";

@@ -1,4 +1,4 @@
-package labs.lab9_11.Exceptions;
+package labs.lab12.Exceptions;
 
 public class NoPhonesAvailableException extends RuntimeException {
     public NoPhonesAvailableException(String message) {
