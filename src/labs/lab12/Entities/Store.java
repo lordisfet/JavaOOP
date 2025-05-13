@@ -67,9 +67,9 @@ public class Store {
      * @param phone the {@code Phone} object to be added
      * @throws IllegalArgumentException if the provided phone is {@code null}
      */
-    public void add(Phone phone, Integer amount) {
-        if (phone != null || amount >= 0) {
-            phones.add(new InventoryEntry(phone, amount));
+    public void addNewPhone(InventoryEntry phone) {
+        if (phone != null || phone.getAmount() >= 0) {
+            phones.add(phone);
         } else {
             throw new IllegalArgumentException("Phone can`t be null or amount can`t be less then 0");
         }

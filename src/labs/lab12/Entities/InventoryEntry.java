@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class InventoryEntry {
     private Phone phone;
-    private Integer amount;
+    private int amount;
 
     public InventoryEntry(Phone phone, Integer amount) {
         if (phone == null) {

@@ -24,7 +24,7 @@ public class PhoneFactory {
      * @return a new {@code Phone} object based on user input, or {@code null} if input is empty
      * @throws IllegalArgumentException if the phone type does not exist
      */
-    public Phone createPhoneFromInput() {
+    public InventoryEntry createPhoneFromInput() {
         String type = setTypeWithValidation();
         if (type.isEmpty()) return null; // Return to the main menu
 
@@ -60,8 +60,10 @@ public class PhoneFactory {
         }
         System.out.print("Enter screen resolution number (1-8): ");
         ScreenResolution screenResolution = setScrResWithValidation();
+        System.out.print("Enter amount of phones: ");
+        int amount = setIntWithValidation();
 
-        return switch (type) {
+        return new InventoryEntry(switch (type) {
             case "Phone" -> new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
@@ -69,7 +71,7 @@ public class PhoneFactory {
             case "FoldablePhone" ->
                     createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             default -> throw new IllegalArgumentException("Type of phone does not exist");
-        };
+        }, amount);
     }
 
     /**
@@ -80,8 +82,8 @@ public class PhoneFactory {
      * @return a list of {@code Phone} objects based on the provided attributes
      * @throws IllegalArgumentException if an unexpected phone type is encountered
      */
-    public ArrayList<Phone> createPhoneFromAttributes(ArrayList<Map<String, String>> attrs) {
-        ArrayList<Phone> listOfPhones = new ArrayList<>();
+    public ArrayList<InventoryEntry> createPhoneFromAttributes(ArrayList<Map<String, String>> attrs) {
+        ArrayList<InventoryEntry> listOfPhones = new ArrayList<>();
         for (Map<String, String> phoneAttrs : attrs) {
             String type = phoneAttrs.get("type");
             String brand = phoneAttrs.get("brand");
@@ -90,33 +92,34 @@ public class PhoneFactory {
             int ram = Integer.parseInt(phoneAttrs.get("ramAmount"));
             int rom = Integer.parseInt(phoneAttrs.get("romAmount"));
             ScreenResolution resolution = ScreenResolution.valueOf(phoneAttrs.get("screenResolution"));
+            int amount = Integer.parseInt(phoneAttrs.get("amount"));
 
-            switch (type) {
-                case "Phone" -> listOfPhones.add(new Phone(type, brand, model, price, ram, rom, resolution));
+            listOfPhones.add(new InventoryEntry(switch (type) {
+                case "Phone" -> new Phone(type, brand, model, price, ram, rom, resolution);
                 case "SmartPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
-                    listOfPhones.add(new SmartPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP));
+                    yield new SmartPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP);
                 }
                 case "KeypadPhone" -> {
                     int buttonCount = Integer.parseInt(phoneAttrs.get("buttonCount"));
                     int supportedBandCount = Integer.parseInt(phoneAttrs.get("supportedBandCount"));
-                    listOfPhones.add(new KeypadPhone(type, brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount));
+                    yield new KeypadPhone(type, brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount);
                 }
                 case "FoldablePhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     int foldableScreens = Integer.parseInt(phoneAttrs.get("foldableScreens"));
-                    listOfPhones.add(new FoldablePhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens));
+                    yield new FoldablePhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens);
                 }
                 case "GamingPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     boolean activeCooling = Boolean.parseBoolean(phoneAttrs.get("activeCooling"));
-                    listOfPhones.add(new GamingPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling));
+                    yield new GamingPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling);
                 }
                 default -> throw new IllegalArgumentException("Unexpected type: " + type);
-            }
+            }, amount));
         }
 
         return listOfPhones;
@@ -207,12 +210,12 @@ public class PhoneFactory {
      * First, a {@link SmartPhone} object is created as a base phone, then foldable screen details are added.
      * If base phone creation fails, the method returns {@code null}.
      *
-     * @param type the type of the phone
-     * @param brand the brand name of the phone
-     * @param model the model name of the phone
-     * @param price the price of the phone
-     * @param ramAmount the amount of RAM in GB
-     * @param romAmount the amount of ROM in GB
+     * @param type             the type of the phone
+     * @param brand            the brand name of the phone
+     * @param model            the model name of the phone
+     * @param price            the price of the phone
+     * @param ramAmount        the amount of RAM in GB
+     * @param romAmount        the amount of ROM in GB
      * @param screenResolution the screen resolution of the phone
      * @return a new {@link FoldablePhone} instance or {@code null} if base phone creation fails
      */

@@ -14,6 +14,7 @@
 
 package labs.lab12;
 
+import labs.lab12.Entities.InventoryEntry;
 import labs.lab12.Entities.PhoneFactory;
 import labs.lab12.Entities.Phones.*;
 import labs.lab12.Entities.InitialFile;
@@ -33,8 +34,8 @@ public class Lab12 {
 
         try {
             InitialFile file = new InitialFile(fileName);
-            for (Phone phone : factory.createPhoneFromAttributes(file.readAllData())) {
-                repository.add(phone);
+            for (InventoryEntry phone : factory.createPhoneFromAttributes(file.readAllData())) {
+                repository.addNewPhone(phone);
             }
         } catch (Exception e) {
             System.out.println("File error: " + e.getMessage());
