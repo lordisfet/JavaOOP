@@ -31,13 +31,13 @@ public class Phone {
      * @throws IllegalArgumentException if any of the parameters are invalid (e.g., null or negative values)
      */
     public Phone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
-        if (type == null || type.isEmpty()) {
+        if (type == null || type.isBlank()) {
             throw new IllegalArgumentException("Type can't be empty or null");
         }
-        if (brand == null || brand.isEmpty()) {
+        if (brand == null || brand.isBlank()) {
             throw new IllegalArgumentException("Brand can't be empty or null");
         }
-        if (model == null || model.isEmpty()) {
+        if (model == null || model.isBlank()) {
             throw new IllegalArgumentException("Model can't be empty or null");
         }
         if (price < 0) {
@@ -153,7 +153,7 @@ public class Phone {
      * @throws IllegalArgumentException if the type is null or empty
      */
     public void setType(String type) {
-        if (type == null || type.isEmpty()) {
+        if (type == null || type.isBlank()) {
             throw new IllegalArgumentException("Type can't be empty or null");
         }
         this.type = type;
@@ -166,7 +166,7 @@ public class Phone {
      * @throws IllegalArgumentException if the brand is null or empty
      */
     public void setBrand(String brand) {
-        if (brand == null || brand.isEmpty()) {
+        if (brand == null || brand.isBlank()) {
             throw new IllegalArgumentException("Brand can't be empty or null");
         }
         this.brand = brand;
@@ -179,7 +179,7 @@ public class Phone {
      * @throws IllegalArgumentException if the model is null or empty
      */
     public void setModel(String model) {
-        if (model == null || model.isEmpty()) {
+        if (model == null || model.isBlank()) {
             throw new IllegalArgumentException("Model can't be empty or null");
         }
         this.model = model;

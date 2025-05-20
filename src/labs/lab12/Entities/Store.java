@@ -200,12 +200,10 @@ public class Store {
      */
     public ArrayList<InventoryEntry> getPhonesByType(String type) {
         ArrayList<InventoryEntry> list = new ArrayList<>();
-        // Optionally, you can convert the inventory entries to a catalog of Phone objects if needed
-        // ArrayList<Phone> catalog = fromInventoryToCatalog();
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getType().equals(type)) {
-                list.add(element);
+                list.add(new InventoryEntry(element));
             }
         }
         return list.isEmpty() ? null : list;
@@ -223,7 +221,7 @@ public class Store {
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getBrand().equals(brand)) {
-                list.add(element);
+                list.add(new InventoryEntry(element));
             }
         }
         return list.isEmpty() ? null : list;
@@ -241,7 +239,7 @@ public class Store {
 
         for (InventoryEntry element : phones) {
             if (element.getPhone().getRamAmount() == ramCount) {
-                list.add(element);
+                list.add(new InventoryEntry(element));
             }
         }
         return list.isEmpty() ? null : list;
@@ -260,6 +258,10 @@ public class Store {
         if (phones.isEmpty()) {
             throw new NoPhonesAvailableException("List of phones is empty");
         }
-        return new ArrayList<>(phones);
+        ArrayList<InventoryEntry> list = new ArrayList<>();
+        for (InventoryEntry element : phones){
+            list.add(new InventoryEntry(element));
+        }
+        return list;
     }
 }

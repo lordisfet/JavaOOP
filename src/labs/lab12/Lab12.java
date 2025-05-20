@@ -28,6 +28,16 @@ import labs.lab12.Entities.Store;
 
 import static labs.lab12.Entities.PhoneFactory.*;
 
+/*
+What i need fix:
+1. Delete "type" from Phone
+2. Change str.isEmpty to str.isBlank
+3. Transfer validations methods to separate class
+4. Add check for parameters to Store constructor
+5. Change InventoryEntry to Phone and Integer amount
+6. Add copy constructor to all classes
+ */
+
 public class Lab12 {
     public static void main(String[] args) {
         PhoneFactory factory = new PhoneFactory();

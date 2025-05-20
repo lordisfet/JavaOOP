@@ -60,7 +60,7 @@ public class InventoryEntry {
         if (other == null) {
             throw new IllegalArgumentException("Cannot copy from a null InventoryEntry object");
         }
-        this.phone = other.phone;
+        this.phone = new Phone(other.getPhone());
         this.amount = other.amount;
     }
 

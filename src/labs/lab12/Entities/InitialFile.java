@@ -27,7 +27,7 @@ public class InitialFile {
      * @throws IllegalArgumentException if the file name is empty or null
      */
     public InitialFile(String fileName) throws FileNotFoundException {
-        if (fileName.isEmpty()) {
+        if (fileName.isBlank()) {
             throw new IllegalArgumentException("File name can`t be empty or null");
         }
         this.fileName = fileName;

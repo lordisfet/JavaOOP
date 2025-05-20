@@ -292,7 +292,7 @@ public class PhoneFactory {
 
         input = scanner.nextLine().trim();
 
-        while (input.isEmpty()) {
+        while (input.isBlank()) {
             System.out.print("Input cannot be empty. Enter text again: ");
             input = scanner.nextLine().trim();
         }
