@@ -12,20 +12,19 @@
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
 
-package labs.lab12;
+package labs.lab13;
 
-import labs.lab12.Entities.InventoryEntry;
-import labs.lab12.Entities.PhoneFactory;
-import labs.lab12.Entities.Phones.*;
-import labs.lab12.Entities.InitialFile;
+import labs.lab13.Entities.InventoryEntry;
+import labs.lab13.Entities.PhoneFactory;
+import labs.lab13.Entities.Phones.*;
+import labs.lab13.Entities.InitialFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-import labs.lab12.Entities.Store;
+import labs.lab13.Entities.Store;
 
-import static labs.lab12.Entities.PhoneFactory.*;
+import static labs.lab13.Entities.PhoneFactory.*;
 
 /*
 What i need fix:
@@ -37,7 +36,7 @@ What i need fix:
 6. Add copy constructor to all classes
  */
 
-public class Lab12 {
+public class Lab13 {
     public static void main(String[] args) {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;

@@ -1,14 +1,14 @@
-package labs.lab12.Entities;
+package labs.lab13.Entities;
 
-import labs.lab12.Entities.Phones.*;
-import labs.lab12.Enums.ScreenResolution;
+import labs.lab13.Entities.Phones.*;
+import labs.lab13.Enums.ScreenResolution;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import static labs.lab12.Entities.InitialFile.getValueSeparator;
-import static labs.lab12.Entities.InitialFile.getfieldSeparator;
+import static labs.lab13.Entities.InitialFile.getValueSeparator;
+import static labs.lab13.Entities.InitialFile.getfieldSeparator;
 
 /**
  * The {@code PhoneFactory} class provides methods for dynamically creating {@link Phone} objects.

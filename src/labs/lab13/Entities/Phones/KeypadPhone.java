@@ -1,8 +1,6 @@
-package labs.lab12.Entities.Phones;
+package labs.lab13.Entities.Phones;
 
-import labs.lab12.Enums.ScreenResolution;
-
-import java.security.Key;
+import labs.lab13.Enums.ScreenResolution;
 
 /**
  * Represents a keypad phone, which is a subclass of {@link Phone}.
