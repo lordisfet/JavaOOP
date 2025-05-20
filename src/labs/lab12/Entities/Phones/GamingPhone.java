@@ -92,4 +92,10 @@ public class GamingPhone extends SmartPhone {
     public int hashCode() {
         return Objects.hash(super.hashCode(), activeCooling);
     }
+
+    public GamingPhone clone() {
+        GamingPhone cloned = (GamingPhone) super.clone();
+        cloned.activeCooling = this.activeCooling;
+        return cloned;
+    }
 }

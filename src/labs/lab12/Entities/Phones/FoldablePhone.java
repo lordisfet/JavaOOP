@@ -92,4 +92,10 @@ public class FoldablePhone extends SmartPhone {
     public int hashCode() {
         return Objects.hash(super.hashCode(), foldableScreens);
     }
+
+    public FoldablePhone clone() {
+        FoldablePhone cloned = (FoldablePhone) super.clone();
+        cloned.foldableScreens = this.foldableScreens;
+        return cloned;
+    }
 }

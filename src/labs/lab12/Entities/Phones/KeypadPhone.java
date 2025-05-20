@@ -2,6 +2,8 @@ package labs.lab12.Entities.Phones;
 
 import labs.lab12.Enums.ScreenResolution;
 
+import java.security.Key;
+
 /**
  * Represents a keypad phone, which is a subclass of {@link Phone}.
  * This type of phone typically features physical buttons and limited band support
@@ -132,5 +134,12 @@ public class KeypadPhone extends Phone {
         if (!super.equals(o)) return false;
         KeypadPhone that = (KeypadPhone) o;
         return buttonCount == that.buttonCount && supportedBandCount == that.supportedBandCount;
+    }
+
+    public KeypadPhone clone() {
+        KeypadPhone cloned = (KeypadPhone) super.clone();
+        cloned.buttonCount = this.buttonCount;
+        cloned.supportedBandCount = this.supportedBandCount;
+        return cloned;
     }
 }

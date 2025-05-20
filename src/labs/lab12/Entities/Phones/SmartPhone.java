@@ -130,4 +130,11 @@ public class SmartPhone extends Phone {
         SmartPhone that = (SmartPhone) o;
         return cpuCores == that.cpuCores && frontCameraMP == that.frontCameraMP;
     }
+
+    public SmartPhone clone() {
+        SmartPhone cloned = (SmartPhone) super.clone();
+        cloned.cpuCores = this.cpuCores;
+        cloned.frontCameraMP = this.frontCameraMP;
+        return cloned;
+    }
 }
