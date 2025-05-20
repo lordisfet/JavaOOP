@@ -40,9 +40,24 @@ public class Store {
      * @param phones a list of {@link InventoryEntry} objects representing the store's initial inventory
      */
     public Store(String name, String address, ArrayList<InventoryEntry> phones) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name of store can`t be empty or null");
+        }
+        if (address == null || address.isBlank()) {
+            throw new IllegalArgumentException("Name of store can`t be empty or null");
+        }
         this.name = name;
         this.address = address;
         this.phones = phones;
+    }
+
+    public Store(Store other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Cannot copy from a null Store object");
+        }
+        this.name = other.name;
+        this.address = other.address;
+        this.phones = other.phones;
     }
 
     /**
