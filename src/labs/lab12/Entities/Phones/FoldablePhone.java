@@ -16,7 +16,6 @@ public class FoldablePhone extends SmartPhone {
      * Initializes the phone with details including brand, model, price, RAM, ROM, screen resolution, CPU cores,
      * front camera specifications, and the number of foldable screens.
      *
-     * @param type            the category of the phone (e.g., smartphone, feature phone)
      * @param brand           the manufacturer of the phone (e.g., Apple, Samsung)
      * @param model           the specific model name (e.g., iPhone 12)
      * @param price           the price of the phone in USD
@@ -27,9 +26,9 @@ public class FoldablePhone extends SmartPhone {
      * @param frontCam        the front camera resolution (in megapixels)
      * @param foldableScreens the number of foldable display panels
      */
-    public FoldablePhone(String type, String brand, String model, double price, int ram, int rom,
+    public FoldablePhone(String brand, String model, double price, int ram, int rom,
                          ScreenResolution res, int cpuCores, int frontCam, int foldableScreens) {
-        super(type, brand, model, price, ram, rom, res, cpuCores, frontCam);
+        super(brand, model, price, ram, rom, res, cpuCores, frontCam);
         this.foldableScreens = foldableScreens;
     }
 

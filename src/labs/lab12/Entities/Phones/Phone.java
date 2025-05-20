@@ -5,12 +5,11 @@ import labs.lab12.Enums.ScreenResolution;
 import java.util.Objects;
 
 /**
- * The {@code Phone} class represents a mobile phone with various specifications like type, brand, model,
+ * The {@code Phone} class represents a mobile phone with various specifications like brand, model,
  * price, RAM amount, ROM amount, and screen resolution.
  * It includes getters, setters, and overrides for {@code toString}, {@code equals}, and {@code hashCode} methods.
  */
 public class Phone {
-    private String type;  // The type of the phone (e.g., smartphone, feature phone)
     private String brand;  // The brand of the phone (e.g., Apple, Samsung)
     private String model;  // The model name or number of the phone (e.g., iPhone 12)
     private double price;  // The price of the phone in USD
@@ -21,7 +20,6 @@ public class Phone {
     /**
      * Constructs a new {@code Phone} object with the specified parameters.
      *
-     * @param type             the type of the phone (e.g., smartphone, feature phone)
      * @param brand            the brand of the phone (e.g., Apple, Samsung)
      * @param model            the model of the phone (e.g., iPhone 12)
      * @param price            the price of the phone in USD
@@ -30,10 +28,7 @@ public class Phone {
      * @param screenResolution the screen resolution of the phone
      * @throws IllegalArgumentException if any of the parameters are invalid (e.g., null or negative values)
      */
-    public Phone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
-        if (type == null || type.isBlank()) {
-            throw new IllegalArgumentException("Type can't be empty or null");
-        }
+    public Phone(String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         if (brand == null || brand.isBlank()) {
             throw new IllegalArgumentException("Brand can't be empty or null");
         }
@@ -52,7 +47,6 @@ public class Phone {
         if (screenResolution == null) {
             throw new IllegalArgumentException("ScreenResolution can't be null");
         }
-        this.type = type;
         this.brand = brand;
         this.model = model;
         this.price = price;
@@ -74,22 +68,12 @@ public class Phone {
             throw new IllegalArgumentException("Cannot copy from a null Phone object");
         }
 
-        this.type = other.type;
         this.brand = other.brand;
         this.model = other.model;
         this.price = other.price;
         this.ramAmount = other.ramAmount;
         this.romAmount = other.romAmount;
         this.screenResolution = other.screenResolution;
-    }
-
-    /**
-     * Gets the type of the phone.
-     *
-     * @return the phone type
-     */
-    public String getType() {
-        return type;
     }
 
     /**
@@ -144,19 +128,6 @@ public class Phone {
      */
     public ScreenResolution getScreenResolution() {
         return screenResolution;
-    }
-
-    /**
-     * Sets the type of the phone.
-     *
-     * @param type the phone type
-     * @throws IllegalArgumentException if the type is null or empty
-     */
-    public void setType(String type) {
-        if (type == null || type.isBlank()) {
-            throw new IllegalArgumentException("Type can't be empty or null");
-        }
-        this.type = type;
     }
 
     /**
@@ -245,8 +216,7 @@ public class Phone {
     
     @Override
     public String toString() {
-        return "type: " + type + "\n" +
-                "brand: " + brand + "\n" +
+        return "brand: " + brand + "\n" +
                 "model: " + model + "\n" +
                 "price: " + price + "\n" +
                 "ramAmount: " + ramAmount + "\n" +
@@ -256,14 +226,13 @@ public class Phone {
 
     /**
      * Generates a structured string representation of the {@code Phone} object for file storage.
-     * The output includes essential attributes such as type, brand, model, price, RAM, ROM, and screen resolution.
+     * The output includes essential attributes such as brand, model, price, RAM, ROM, and screen resolution.
      * Each field is separated by a semicolon (';') for easy parsing when stored in a file.
      *
      * @return a formatted string containing phone details, ready for file storage
      */
     public String toStringToFile() {
-        return "type:" + type + ';' +
-                "brand:" + brand + ';' +
+        return "brand:" + brand + ';' +
                 "model:" + model + ';' +
                 "price:" + price + ';' +
                 "ramAmount:" + ramAmount + ';' +
@@ -293,7 +262,6 @@ public class Phone {
         return Double.compare(phone.price, price) == 0 &&
                 ramAmount == phone.ramAmount &&
                 romAmount == phone.romAmount &&
-                Objects.equals(type, phone.type) &&
                 Objects.equals(brand, phone.brand) &&
                 Objects.equals(model, phone.model) &&
                 Objects.equals(screenResolution, phone.screenResolution);
@@ -307,6 +275,6 @@ public class Phone {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(type, brand, model, price, ramAmount, romAmount, screenResolution);
+        return Objects.hash(brand, model, price, ramAmount, romAmount, screenResolution);
     }
 }

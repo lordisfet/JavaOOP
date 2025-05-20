@@ -16,8 +16,7 @@ public class KeypadPhone extends Phone {
 
     /**
      * Constructs a new {@code KeypadPhone} object with the specified parameters.
-     *
-     * @param type               the type of the phone (e.g., "feature phone")
+
      * @param brand              the brand of the phone (e.g., Nokia, Samsung)
      * @param model              the model of the phone (e.g., 3310)
      * @param price              the price of the phone in USD
@@ -28,9 +27,9 @@ public class KeypadPhone extends Phone {
      * @param supportedBandCount the number of supported cellular bands
      * @throws IllegalArgumentException if {@code buttonCount} or {@code supportedBandCount} is negative
      */
-    public KeypadPhone(String type, String brand, String model, double price, int ramAmount, int romAmount,
+    public KeypadPhone(String brand, String model, double price, int ramAmount, int romAmount,
                        ScreenResolution screenResolution, int buttonCount, int supportedBandCount) {
-        super(type, brand, model, price, ramAmount, romAmount, screenResolution);
+        super(brand, model, price, ramAmount, romAmount, screenResolution);
         if (buttonCount < 0) {
             throw new IllegalArgumentException("Count of buttons can't be less than 0");
         }

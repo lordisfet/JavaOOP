@@ -77,7 +77,7 @@ public class Lab12 {
                     System.out.print("\nCriteria for search: ");
                     criteria = setIntWithValidation();
                     switch (criteria) {
-                        case 1 -> {
+                        /*case 1 -> {
                             System.out.print("Enter type:\n");
                             String valueOfCriteria = setTypeWithValidation();
                             if (valueOfCriteria.isEmpty()) {
@@ -94,7 +94,7 @@ public class Lab12 {
                                 System.out.println("The list is empty. Elements with type \"" +
                                         valueOfCriteria + "\" not exist");
                             }
-                        }
+                        }*/
                         case 2 -> {
                             System.out.print("Enter brand: ");
                             String valueOfCriteria = setStringWithValidation();

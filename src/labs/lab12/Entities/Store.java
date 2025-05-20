@@ -213,7 +213,7 @@ public class Store {
      * @return an {@link ArrayList} of inventory entries with phones matching the given type,
      *         or {@code null} if no matching entries are found
      */
-    public ArrayList<InventoryEntry> getPhonesByType(String type) {
+    /*public ArrayList<InventoryEntry> getPhonesByType(String type) {
         ArrayList<InventoryEntry> list = new ArrayList<>();
 
         for (InventoryEntry element : phones) {
@@ -222,7 +222,7 @@ public class Store {
             }
         }
         return list.isEmpty() ? null : list;
-    }
+    }*/
 
     /**
      * Retrieves a list of {@link InventoryEntry} objects whose contained {@link Phone} objects match the specified brand.

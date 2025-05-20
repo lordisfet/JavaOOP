@@ -66,12 +66,11 @@ public class PhoneFactory {
         ScreenResolution screenResolution = setScrResWithValidation();
 
         Phone newPhone = switch (type) {
-            case "Phone" -> new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "GamingPhone" -> createGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
-            case "FoldablePhone" ->
-                    createFoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+            case "Phone" -> new Phone(brand, model, price, ramAmount, romAmount, screenResolution);
+            case "SmartPhone" -> createSmartPhone(brand, model, price, ramAmount, romAmount, screenResolution);
+            case "KeypadPhone" -> createKeypadPhone(brand, model, price, ramAmount, romAmount, screenResolution);
+            case "GamingPhone" -> createGamingPhone(brand, model, price, ramAmount, romAmount, screenResolution);
+            case "FoldablePhone" -> createFoldablePhone(brand, model, price, ramAmount, romAmount, screenResolution);
             default -> throw new IllegalArgumentException("Type of phone does not exist");
         };
 
@@ -108,28 +107,27 @@ public class PhoneFactory {
             int amount = Integer.parseInt(phoneAttrs.get("amount"));
 
             listOfPhones.add(new InventoryEntry(switch (type) {
-                case "Phone" -> new Phone(type, brand, model, price, ram, rom, resolution);
                 case "SmartPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
-                    yield new SmartPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP);
+                    yield new SmartPhone(brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP);
                 }
                 case "KeypadPhone" -> {
                     int buttonCount = Integer.parseInt(phoneAttrs.get("buttonCount"));
                     int supportedBandCount = Integer.parseInt(phoneAttrs.get("supportedBandCount"));
-                    yield new KeypadPhone(type, brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount);
+                    yield new KeypadPhone(brand, model, price, ram, rom, resolution, buttonCount, supportedBandCount);
                 }
                 case "FoldablePhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     int foldableScreens = Integer.parseInt(phoneAttrs.get("foldableScreens"));
-                    yield new FoldablePhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens);
+                    yield new FoldablePhone(brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, foldableScreens);
                 }
                 case "GamingPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
                     boolean activeCooling = Boolean.parseBoolean(phoneAttrs.get("activeCooling"));
-                    yield new GamingPhone(type, brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling);
+                    yield new GamingPhone(brand, model, price, ram, rom, resolution, cpuCores, frontCameraMP, activeCooling);
                 }
                 default -> throw new IllegalArgumentException("Unexpected type: " + type);
             }, amount));
@@ -144,7 +142,6 @@ public class PhoneFactory {
      * Prompts the user to enter CPU core count and front camera resolution.
      * Handles invalid input by catching exceptions and returning {@code null}.
      *
-     * @param type             the type of phone
      * @param brand            the brand name of the phone
      * @param model            the model name of the phone
      * @param price            the price of the phone
@@ -153,14 +150,14 @@ public class PhoneFactory {
      * @param screenResolution the screen resolution of the phone
      * @return a new {@link SmartPhone} instance or {@code null} if input validation fails
      */
-    private SmartPhone createSmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
+    private SmartPhone createSmartPhone(String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter number of CPU cores: ");
         int cpuCores = setIntWithValidation();
         System.out.print("Enter front camera MP: ");
         int frontCameraMP = setIntWithValidation();
 
         try {
-            return new SmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution, cpuCores, frontCameraMP);
+            return new SmartPhone(brand, model, price, ramAmount, romAmount, screenResolution, cpuCores, frontCameraMP);
         } catch (IllegalArgumentException e) {
             System.out.println("Input error: " + e.getMessage());
             return null;
@@ -171,7 +168,6 @@ public class PhoneFactory {
      * Creates a {@link KeypadPhone} instance with user-provided specifications.
      * Requests the user to input the number of physical buttons and supported frequency bands.
      *
-     * @param type             the type of phone
      * @param brand            the brand name of the phone
      * @param model            the model name of the phone
      * @param price            the price of the phone
@@ -180,14 +176,14 @@ public class PhoneFactory {
      * @param screenResolution the screen resolution of the phone
      * @return a new {@link KeypadPhone} instance or {@code null} if input validation fails
      */
-    private KeypadPhone createKeypadPhone(String type, String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
+    private KeypadPhone createKeypadPhone(String brand, String model, double price, int ramAmount, int romAmount, ScreenResolution screenResolution) {
         System.out.print("Enter Count of buttons: ");
         int buttonCount = setIntWithValidation();
         System.out.print("Enter Count supported bands: ");
         int supportedBandCount = setIntWithValidation();
 
         try {
-            return new KeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution, buttonCount, supportedBandCount);
+            return new KeypadPhone(brand, model, price, ramAmount, romAmount, screenResolution, buttonCount, supportedBandCount);
         } catch (IllegalArgumentException e) {
             System.out.println("Input error: " + e.getMessage());
             return null;
@@ -198,7 +194,6 @@ public class PhoneFactory {
      * Creates a {@link GamingPhone} instance by first constructing a {@link SmartPhone} base phone.
      * Adds gaming-specific attributes such as active cooling.
      *
-     * @param type  the type of phone
      * @param brand the brand name of the phone
      * @param model the model name of the phone
      * @param price the price of the phone
@@ -207,15 +202,15 @@ public class PhoneFactory {
      * @param res   the screen resolution of the phone
      * @return a new {@link GamingPhone} instance or {@code null} if input validation fails
      */
-    private GamingPhone createGamingPhone(String type, String brand, String model, double price, int ram, int rom, ScreenResolution res) {
-        SmartPhone basePhone = createSmartPhone(type, brand, model, price, ram, rom, res);
+    private GamingPhone createGamingPhone(String brand, String model, double price, int ram, int rom, ScreenResolution res) {
+        SmartPhone basePhone = createSmartPhone(brand, model, price, ram, rom, res);
 
         if (basePhone == null) return null;
 
         System.out.print("Has active cooling (true/false): ");
         boolean activeCooling = Boolean.parseBoolean(setStringWithValidation());
 
-        return new GamingPhone(type, brand, model, price, ram, rom, res,
+        return new GamingPhone(brand, model, price, ram, rom, res,
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), activeCooling);
     }
 
@@ -224,7 +219,6 @@ public class PhoneFactory {
      * First, a {@link SmartPhone} object is created as a base phone, then foldable screen details are added.
      * If base phone creation fails, the method returns {@code null}.
      *
-     * @param type             the type of the phone
      * @param brand            the brand name of the phone
      * @param model            the model name of the phone
      * @param price            the price of the phone
@@ -233,16 +227,16 @@ public class PhoneFactory {
      * @param screenResolution the screen resolution of the phone
      * @return a new {@link FoldablePhone} instance or {@code null} if base phone creation fails
      */
-    private FoldablePhone createFoldablePhone(String type, String brand, String model, double price,
+    private FoldablePhone createFoldablePhone(String brand, String model, double price,
                                               int ramAmount, int romAmount, ScreenResolution screenResolution) {
-        SmartPhone basePhone = createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
+        SmartPhone basePhone = createSmartPhone(brand, model, price, ramAmount, romAmount, screenResolution);
 
         if (basePhone == null) return null;
 
         System.out.print("Enter count of foldable screens: ");
         int foldableScreens = setIntWithValidation();
 
-        return new FoldablePhone(type, brand, model, price, ramAmount, romAmount, screenResolution,
+        return new FoldablePhone(brand, model, price, ramAmount, romAmount, screenResolution,
                 basePhone.getCpuCores(), basePhone.getFrontCameraMP(), foldableScreens
         );
     }
@@ -325,29 +319,27 @@ public class PhoneFactory {
      */
     public static String setTypeWithValidation() {
         System.out.print("""
-                \t1. Phone\s
-                \t2. SmartPhone \
+                \t1. SmartPhone \
                 
-                \t3. KeypadPhone\s
-                \t4. GamingPhone \
+                \t2. KeypadPhone\s
+                \t3. GamingPhone \
                 
-                \t5. FoldablePhone\s
-                \t6. Exit
+                \t4. FoldablePhone\s
+                \t5. Exit
                 Choose type:\s""");
         int input = setIntWithValidation();
 
-        while (input < 1 || input > 6) {
-            System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
+        while (input < 1 || input > 5) {
+            System.out.print("Type must be one of the following: \nSmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
             input = setIntWithValidation();
         }
 
         return switch (input) {
-            case 1 -> "Phone";
-            case 2 -> "SmartPhone";
-            case 3 -> "KeypadPhone";
-            case 4 -> "GamingPhone";
-            case 5 -> "FoldablePhone";
-            case 6 -> "";
+            case 1 -> "SmartPhone";
+            case 2 -> "KeypadPhone";
+            case 3 -> "GamingPhone";
+            case 4 -> "FoldablePhone";
+            case 5 -> "";
             default -> throw new IllegalStateException("Unexpected type: " + input);
         };
     }

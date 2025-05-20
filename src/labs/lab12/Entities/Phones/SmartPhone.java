@@ -13,7 +13,6 @@ public class SmartPhone extends Phone {
     /**
      * Constructs a new {@code SmartPhone} object with the specified parameters.
      *
-     * @param type             the type of the phone (e.g., "Smartphone")
      * @param brand            the brand of the phone (e.g., "Samsung", "Apple")
      * @param model            the model of the phone (e.g., "Galaxy S23")
      * @param price            the price of the phone in USD; must be non-negative
@@ -24,9 +23,9 @@ public class SmartPhone extends Phone {
      * @param frontCameraMP    the resolution of the front camera in megapixels; must be non-negative
      * @throws IllegalArgumentException if any numeric value is negative
      */
-    public SmartPhone(String type, String brand, String model, double price, int ramAmount, int romAmount,
+    public SmartPhone(String brand, String model, double price, int ramAmount, int romAmount,
                       ScreenResolution screenResolution, int cpuCores, int frontCameraMP) {
-        super(type, brand, model, price, ramAmount, romAmount, screenResolution);
+        super(brand, model, price, ramAmount, romAmount, screenResolution);
         if (cpuCores < 0) {
             throw new IllegalArgumentException("Amount of CPU cores can't be less than 0");
         }

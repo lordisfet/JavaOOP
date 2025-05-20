@@ -16,7 +16,6 @@ public class GamingPhone extends SmartPhone {
     /**
      * Constructor for initializing a new gaming phone.
      *
-     * @param type The type of the phone (e.g., smartphone, tablet, etc.).
      * @param brand The brand of the phone.
      * @param model The model of the phone.
      * @param price The price of the phone.
@@ -27,9 +26,9 @@ public class GamingPhone extends SmartPhone {
      * @param frontCam The resolution of the front camera.
      * @param activeCooling Whether the phone has active cooling (true/false).
      */
-    public GamingPhone(String type, String brand, String model, double price, int ram, int rom,
+    public GamingPhone(String brand, String model, double price, int ram, int rom,
                        ScreenResolution res, int cpuCores, int frontCam, boolean activeCooling) {
-        super(type, brand, model, price, ram, rom, res, cpuCores, frontCam);
+        super(brand, model, price, ram, rom, res, cpuCores, frontCam);
         this.activeCooling = activeCooling;
     }
 
