@@ -2,13 +2,12 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №12
- * Час виконання: 1 ujlbyf 20 хвилин
+ * Лабораторна:   №13
+ * Час виконання: 20 хвилин
  *
  * Опис:
- * Додати клас Store який агрегує ArrayList<Phone>
- та реалізувати методи для додавання нових об`єктів типу Phone,
- * їх пошук, можливість запису кількості елементів одного типу.
+ * Зробити батьківський клас абстрактним, реалізувати в ньому інтерфейс Comparable.
+ * Додати меню до головного меню для виводу відсортованих даних.
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
@@ -22,7 +21,7 @@ import labs.lab12.Entities.InitialFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Map;
+import java.util.*;
 
 import labs.lab12.Entities.Store;
 
@@ -60,7 +59,8 @@ public class Lab12 {
             System.out.println("1. Search phone by");
             System.out.println("2. Create new phone");
             System.out.println("3. Show all phones");
-            System.out.println("4. Exit");
+            System.out.println("4. Show all phones sort by price");
+            System.out.println("5. Exit");
             System.out.print("\nChoose action: ");
             action = setIntWithValidation();
 
@@ -152,10 +152,24 @@ public class Lab12 {
                     }
                 }
                 case 4 -> {
+                    ArrayList<Phone> listOfPhones = new ArrayList<>();
+                    System.out.println("\nList of phones sorted:\n");
+                    try {
+                        for (InventoryEntry phone : store.getAll()) {
+                            listOfPhones.add(phone.getPhone());
+                        }
+                        Collections.sort(listOfPhones);
+                    } catch (Exception e) {
+                        System.out.println("Exception" + e.getMessage());
+                    }
+
+                    listOfPhones.forEach(System.out::println);
+                }
+                case 5 -> {
                     System.out.println("Exiting...");
                     try {
                         InitialFile file = new InitialFile(fileName);
-                        file.writeData(store, store.getAll());
+                        file.writeData(Objects.requireNonNull(store), store.getAll());
                     } catch (IOException e) {
                         System.out.println("File error: " + e.getMessage());
                     }

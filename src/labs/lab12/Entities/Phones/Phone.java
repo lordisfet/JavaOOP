@@ -9,7 +9,7 @@ import java.util.Objects;
  * price, RAM amount, ROM amount, and screen resolution.
  * It includes getters, setters, and overrides for {@code toString}, {@code equals}, and {@code hashCode} methods.
  */
-public abstract class Phone implements Cloneable{
+public abstract class Phone implements Cloneable, Comparable<Phone> {
     private String type;  // The type of the phone (e.g., smartphone, feature phone)
     private String brand;  // The brand of the phone (e.g., Apple, Samsung)
     private String model;  // The model name or number of the phone (e.g., iPhone 12)
@@ -242,7 +242,7 @@ public abstract class Phone implements Cloneable{
      *
      * @return a string representation of the phone's details in JSON format
      */
-    
+
     @Override
     public String toString() {
         return "type: " + type + "\n" +
@@ -319,5 +319,11 @@ public abstract class Phone implements Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    @Override
+    public int compareTo(Phone o) {
+        Objects.requireNonNull(o);
+        return Double.compare(getPrice(), o.getPrice());
     }
 }
