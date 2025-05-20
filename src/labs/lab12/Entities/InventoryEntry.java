@@ -13,7 +13,7 @@ import java.util.Objects;
  * overridden methods for string representation and equality.
  * </p>
  */
-public class InventoryEntry {
+public class InventoryEntry implements Cloneable{
     /**
      * The phone associated with this inventory entry.
      */
@@ -60,7 +60,7 @@ public class InventoryEntry {
         if (other == null) {
             throw new IllegalArgumentException("Cannot copy from a null InventoryEntry object");
         }
-        this.phone = new Phone(other.getPhone());
+        this.phone = other.phone.clone();
         this.amount = other.amount;
     }
 
@@ -147,5 +147,17 @@ public class InventoryEntry {
     @Override
     public int hashCode() {
         return Objects.hash(phone, amount);
+    }
+
+    @Override
+    public InventoryEntry clone() {
+        try {
+            InventoryEntry clone = (InventoryEntry) super.clone();
+            clone.phone = this.phone.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

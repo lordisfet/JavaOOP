@@ -16,7 +16,7 @@ import java.util.Objects;
  * It also allows retrieving the complete inventory and converting the store details to a file-friendly format.
  * </p>
  */
-public class Store {
+public class Store implements Cloneable{
     /**
      * The name of the store.
      */
@@ -30,7 +30,7 @@ public class Store {
     /**
      * The list of inventory entries representing the phones stored in the store.
      */
-    private ArrayList<InventoryEntry> phones = new ArrayList<>();
+    private ArrayList<InventoryEntry> phones;
 
     /**
      * Constructs a new {@code Store} with the specified name, address, and initial inventory.
@@ -278,5 +278,17 @@ public class Store {
             list.add(new InventoryEntry(element));
         }
         return list;
+    }
+
+    @Override
+    public Store clone() {
+        try {
+            Store clone = (Store) super.clone();
+            clone.phones = (ArrayList<InventoryEntry>) this.phones.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

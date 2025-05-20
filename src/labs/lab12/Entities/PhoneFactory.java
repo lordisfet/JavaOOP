@@ -66,7 +66,6 @@ public class PhoneFactory {
         ScreenResolution screenResolution = setScrResWithValidation();
 
         Phone newPhone = switch (type) {
-            case "Phone" -> new Phone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "SmartPhone" -> createSmartPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "KeypadPhone" -> createKeypadPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
             case "GamingPhone" -> createGamingPhone(type, brand, model, price, ramAmount, romAmount, screenResolution);
@@ -108,7 +107,6 @@ public class PhoneFactory {
             int amount = Integer.parseInt(phoneAttrs.get("amount"));
 
             listOfPhones.add(new InventoryEntry(switch (type) {
-                case "Phone" -> new Phone(type, brand, model, price, ram, rom, resolution);
                 case "SmartPhone" -> {
                     int cpuCores = Integer.parseInt(phoneAttrs.get("cpuCores"));
                     int frontCameraMP = Integer.parseInt(phoneAttrs.get("frontCameraMP"));
@@ -137,7 +135,6 @@ public class PhoneFactory {
 
         return listOfPhones;
     }
-
 
     /**
      * Creates a {@link SmartPhone} instance with user-provided specifications.
@@ -325,29 +322,27 @@ public class PhoneFactory {
      */
     public static String setTypeWithValidation() {
         System.out.print("""
-                \t1. Phone\s
-                \t2. SmartPhone \
+                \t1. SmartPhone \
                 
-                \t3. KeypadPhone\s
-                \t4. GamingPhone \
+                \t2. KeypadPhone\s
+                \t3. GamingPhone \
                 
-                \t5. FoldablePhone\s
-                \t6. Exit
+                \t4. FoldablePhone\s
+                \t5. Exit
                 Choose type:\s""");
         int input = setIntWithValidation();
 
-        while (input < 1 || input > 6) {
+        while (input < 1 || input > 5) {
             System.out.print("Type must be one of the following: \nPhone/SmartPhone/KeypadPhone/GamingPhone/FoldablePhone: ");
             input = setIntWithValidation();
         }
 
         return switch (input) {
-            case 1 -> "Phone";
-            case 2 -> "SmartPhone";
-            case 3 -> "KeypadPhone";
-            case 4 -> "GamingPhone";
-            case 5 -> "FoldablePhone";
-            case 6 -> "";
+            case 1 -> "SmartPhone";
+            case 2 -> "KeypadPhone";
+            case 3 -> "GamingPhone";
+            case 4 -> "FoldablePhone";
+            case 5 -> "";
             default -> throw new IllegalStateException("Unexpected type: " + input);
         };
     }
