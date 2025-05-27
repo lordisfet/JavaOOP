@@ -1,6 +1,6 @@
-package labs.lab14.Entities;
+package labs.lab15.Entities;
 
-import labs.lab14.Entities.Phones.Phone;
+import labs.lab15.Entities.Phones.Phone;
 
 import java.util.Objects;
 

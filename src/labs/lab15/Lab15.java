@@ -12,18 +12,18 @@
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
 
-package labs.lab14;
+package labs.lab15;
 
-import labs.lab14.Entities.InventoryEntry;
-import labs.lab14.Entities.PhoneFactory;
-import labs.lab14.Entities.InitialFile;
+import labs.lab15.Entities.InventoryEntry;
+import labs.lab15.Entities.PhoneFactory;
+import labs.lab15.Entities.InitialFile;
 
 import java.io.IOException;
 import java.util.*;
 
-import labs.lab14.Entities.Store;
+import labs.lab15.Entities.Store;
 
-import static labs.lab14.Entities.PhoneFactory.*;
+import static labs.lab15.Entities.PhoneFactory.*;
 
 /*
 What i need fix:
@@ -35,7 +35,7 @@ What i need fix:
 6. Add copy constructor to all classes
  */
 
-public class Lab14 {
+public class Lab15 {
     public static void main(String[] args) {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;
