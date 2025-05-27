@@ -5,16 +5,24 @@ import labs.lab13.Enums.ScreenResolution;
 import java.util.Objects;
 
 /**
- * The {@code FoldablePhone} class represents a foldable smartphone that extends the functionality of a {@link SmartPhone}.
- * It introduces additional features, specifically foldable screens.
+ * Represents a foldable smartphone that extends the functionality of {@link SmartPhone}.
+ * <p>
+ * This class introduces an additional feature: foldable screens. It inherits all attributes and behaviors from
+ * {@link SmartPhone} while adding a dedicated field to track the number of foldable screens.
+ * </p>
  */
 public class FoldablePhone extends SmartPhone {
-    private int foldableScreens; // Number of foldable screens in the phone
+    /**
+     * The number of foldable screens available in the phone.
+     */
+    private int foldableScreens;
 
     /**
      * Constructs a new {@code FoldablePhone} instance with the specified parameters.
+     * <p>
      * Initializes the phone with details including brand, model, price, RAM, ROM, screen resolution, CPU cores,
      * front camera specifications, and the number of foldable screens.
+     * </p>
      *
      * @param type            the category of the phone (e.g., smartphone, feature phone)
      * @param brand           the manufacturer of the phone (e.g., Apple, Samsung)
@@ -34,21 +42,44 @@ public class FoldablePhone extends SmartPhone {
     }
 
     /**
-     * Copy constructor that creates a new {@code FoldablePhone} instance
-     * by duplicating the attributes of an existing {@code FoldablePhone} object.
+     * Constructs a new {@code FoldablePhone} instance by copying attributes from an existing instance.
      *
-     * @param other the {@code FoldablePhone} instance to copy
+     * @param other the {@code FoldablePhone} instance to duplicate
+     * @throws IllegalArgumentException if {@code other} is {@code null}
      */
     public FoldablePhone(FoldablePhone other) {
         super(other);
+        if (other == null) {
+            throw new IllegalArgumentException("Cannot copy from a null FoldablePhone object");
+        }
         this.foldableScreens = other.foldableScreens;
     }
 
     /**
-     * Returns a formatted string representing the details of the {@code FoldablePhone}.
-     * This method extends {@link SmartPhone#toString} by including foldable screen details.
+     * Returns the number of foldable screens in the phone.
      *
-     * @return a descriptive string of the foldable phone
+     * @return the foldable screen count
+     */
+    public int getFoldableScreens() {
+        return foldableScreens;
+    }
+
+    /**
+     * Sets the number of foldable screens in the phone.
+     *
+     * @param foldableScreens the new foldable screen count
+     */
+    public void setFoldableScreens(int foldableScreens) {
+        this.foldableScreens = foldableScreens;
+    }
+
+    /**
+     * Returns a formatted string representation of this {@code FoldablePhone}.
+     * <p>
+     * Extends {@link SmartPhone#toString} by appending foldable screen details.
+     * </p>
+     *
+     * @return a descriptive string containing the phone's information
      */
     @Override
     public String toString() {
@@ -56,23 +87,26 @@ public class FoldablePhone extends SmartPhone {
     }
 
     /**
-     * Generates a structured string representation of the {@code FoldablePhone} object for file storage.
-     * This output includes inherited attributes from {@link SmartPhone}, along with foldable screen details.
+     * Generates a structured string representation of this {@code FoldablePhone} object for file storage.
+     * <p>
+     * Includes inherited attributes from {@link SmartPhone}, along with foldable screen details.
+     * </p>
      *
-     * @return a formatted string suitable for file storage, containing foldable screen information
+     * @return a formatted string suitable for file storage
      */
     @Override
     public String toStringToFile() {
         return super.toStringToFile() + "foldableScreens:" + foldableScreens + ';';
     }
 
-
     /**
      * Compares this {@code FoldablePhone} instance with another object for equality.
+     * <p>
      * The comparison considers all attributes, including inherited ones from {@link SmartPhone}.
+     * </p>
      *
      * @param o the object to compare with
-     * @return {@code true} if the instances are equivalent, {@code false} otherwise
+     * @return {@code true} if both instances are equivalent, {@code false} otherwise
      */
     @Override
     public boolean equals(Object o) {
@@ -84,7 +118,9 @@ public class FoldablePhone extends SmartPhone {
 
     /**
      * Generates a hash code for this {@code FoldablePhone} instance.
-     * The hash code includes both inherited attributes and unique ones from {@link SmartPhone}.
+     * <p>
+     * The hash code includes inherited attributes along with the foldable screen count.
+     * </p>
      *
      * @return a hash code representing this {@code FoldablePhone}
      */
@@ -93,6 +129,15 @@ public class FoldablePhone extends SmartPhone {
         return Objects.hash(super.hashCode(), foldableScreens);
     }
 
+    /**
+     * Creates a clone of this {@code FoldablePhone} instance.
+     * <p>
+     * Uses {@link SmartPhone#clone()} to inherit attributes while manually copying foldable screen details.
+     * </p>
+     *
+     * @return a cloned {@code FoldablePhone} instance
+     */
+    @Override
     public FoldablePhone clone() {
         FoldablePhone cloned = (FoldablePhone) super.clone();
         cloned.foldableScreens = this.foldableScreens;

@@ -309,7 +309,21 @@ public abstract class Phone implements Cloneable, Comparable<Phone> {
     public int hashCode() {
         return Objects.hash(type, brand, model, price, ramAmount, romAmount, screenResolution);
     }
-
+    /**
+     * Creates a clone of this {@code Phone} instance.
+     * <p>
+     * This method performs a shallow copy using {@code super.clone()}, ensuring that all attributes
+     * from the base class are duplicated. Since {@code Phone} is an abstract class, subclasses should
+     * implement deeper copying of mutable fields if needed.
+     * </p>
+     * <p>
+     * If cloning fails, an {@link AssertionError} is thrown, indicating an unexpected failure since
+     * the class implements {@link Cloneable}.
+     * </p>
+     *
+     * @return a cloned {@code Phone} instance
+     * @throws AssertionError if cloning fails unexpectedly
+     */
     @Override
     public Phone clone() {
         try {
@@ -321,9 +335,22 @@ public abstract class Phone implements Cloneable, Comparable<Phone> {
         }
     }
 
+    /**
+     * Compares this {@code Phone} instance with another based on price.
+     * <p>
+     * This method ensures that the comparison is performed on non-null objects and
+     * compares phone prices using {@code Double.compare()}.
+     * </p>
+     *
+     * @param o the {@code Phone} instance to compare with
+     * @return a negative value if this phone is cheaper, zero if prices are equal,
+     *         and a positive value if this phone is more expensive
+     * @throws NullPointerException if the provided {@code Phone} is {@code null}
+     */
     @Override
     public int compareTo(Phone o) {
-        Objects.requireNonNull(o);
+        Objects.requireNonNull(o); // Ensures non-null comparison
         return Double.compare(getPrice(), o.getPrice());
     }
+
 }

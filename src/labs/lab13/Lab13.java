@@ -41,7 +41,7 @@ public class Lab13 {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;
         int action;
-        String fileName = "src/labs/lab12/Data/input.txt";
+        String fileName = "src/labs/lab13/Data/input.txt";
 
         try {
             InitialFile file = new InitialFile(fileName);

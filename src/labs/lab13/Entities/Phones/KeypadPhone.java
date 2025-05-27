@@ -134,10 +134,26 @@ public class KeypadPhone extends Phone {
         return buttonCount == that.buttonCount && supportedBandCount == that.supportedBandCount;
     }
 
+    /**
+     * Creates a clone of this {@code KeypadPhone} instance.
+     * <p>
+     * This method performs a shallow copy of the {@code KeypadPhone} object using {@code super.clone()},
+     * ensuring that all inherited attributes are duplicated. Additionally, the {@code buttonCount} and
+     * {@code supportedBandCount} fields are manually copied to preserve their values in the cloned instance.
+     * </p>
+     * <p>
+     * Since {@code super.clone()} is used, this method assumes that the parent class properly implements
+     * {@link Cloneable}. If cloning fails, an exception will be thrown.
+     * </p>
+     *
+     * @return a cloned {@code KeypadPhone} instance with identical attributes
+     */
+    @Override
     public KeypadPhone clone() {
         KeypadPhone cloned = (KeypadPhone) super.clone();
         cloned.buttonCount = this.buttonCount;
         cloned.supportedBandCount = this.supportedBandCount;
         return cloned;
     }
+
 }

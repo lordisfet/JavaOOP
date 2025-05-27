@@ -131,10 +131,26 @@ public class SmartPhone extends Phone {
         return cpuCores == that.cpuCores && frontCameraMP == that.frontCameraMP;
     }
 
+    /**
+     * Creates a clone of this {@code SmartPhone} instance.
+     * <p>
+     * This method performs a shallow copy of the {@code SmartPhone} object using {@code super.clone()},
+     * ensuring that all inherited attributes are duplicated. Additionally, the {@code cpuCores} and
+     * {@code frontCameraMP} fields are manually copied to preserve their values in the cloned instance.
+     * </p>
+     * <p>
+     * Since {@code super.clone()} is used, this method assumes that the parent class properly implements
+     * {@link Cloneable}. If cloning fails, an exception will be thrown.
+     * </p>
+     *
+     * @return a cloned {@code SmartPhone} instance with identical attributes
+     */
+    @Override
     public SmartPhone clone() {
         SmartPhone cloned = (SmartPhone) super.clone();
-        cloned.cpuCores = this.cpuCores;
-        cloned.frontCameraMP = this.frontCameraMP;
+        cloned.cpuCores = this.cpuCores; // Manually copying CPU core count
+        cloned.frontCameraMP = this.frontCameraMP; // Manually copying front camera resolution
         return cloned;
     }
+
 }

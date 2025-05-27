@@ -93,9 +93,26 @@ public class GamingPhone extends SmartPhone {
         return Objects.hash(super.hashCode(), activeCooling);
     }
 
+    /**
+     * Creates a clone of this {@code GamingPhone} instance.
+     * <p>
+     * This method performs a shallow copy of the {@code GamingPhone} object using {@code super.clone()},
+     * ensuring that all inherited attributes are duplicated. Additionally, the {@code activeCooling} field
+     * is manually copied to preserve its value in the cloned instance.
+     * </p>
+     * <p>
+     * Since {@code super.clone()} is used, this method assumes that the parent class properly implements
+     * {@link Cloneable}. If cloning fails, an {@link AssertionError} is thrown to indicate that cloning
+     * should be supported.
+     * </p>
+     *
+     * @return a cloned {@code GamingPhone} instance with identical attributes
+     */
+    @Override
     public GamingPhone clone() {
         GamingPhone cloned = (GamingPhone) super.clone();
         cloned.activeCooling = this.activeCooling;
         return cloned;
     }
+
 }

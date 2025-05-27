@@ -149,15 +149,31 @@ public class InventoryEntry implements Cloneable{
         return Objects.hash(phone, amount);
     }
 
+    /**
+     * Creates a clone of this {@code InventoryEntry} instance.
+     * <p>
+     * This method performs a shallow copy of the {@code InventoryEntry} object using {@code super.clone()},
+     * ensuring that all inherited attributes are duplicated. Additionally, the {@code phone} field is
+     * explicitly cloned to ensure that the cloned entry maintains an independent copy of the phone object.
+     * </p>
+     * <p>
+     * Since {@code super.clone()} is used, this method assumes that the parent class properly implements
+     * {@link Cloneable}. If cloning fails, an {@link AssertionError} is thrown to indicate an unexpected failure.
+     * </p>
+     *
+     * @return a cloned {@code InventoryEntry} instance with identical attributes
+     * @throws AssertionError if cloning is not supported despite {@link Cloneable} implementation
+     */
     @Override
     public InventoryEntry clone() {
         try {
             InventoryEntry clone = (InventoryEntry) super.clone();
-            clone.phone = this.phone.clone();
+            clone.phone = this.phone.clone(); // Manually cloning the phone object
             // TODO: copy mutable state here, so the clone can't change the internals of the original
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
     }
+
 }
