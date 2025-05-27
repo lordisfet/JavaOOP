@@ -12,19 +12,18 @@
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
 
-package labs.lab13;
+package labs.lab14;
 
-import labs.lab13.Entities.InventoryEntry;
-import labs.lab13.Entities.PhoneFactory;
-import labs.lab13.Entities.Phones.*;
-import labs.lab13.Entities.InitialFile;
+import labs.lab14.Entities.InventoryEntry;
+import labs.lab14.Entities.PhoneFactory;
+import labs.lab14.Entities.InitialFile;
 
 import java.io.IOException;
 import java.util.*;
 
-import labs.lab13.Entities.Store;
+import labs.lab14.Entities.Store;
 
-import static labs.lab13.Entities.PhoneFactory.*;
+import static labs.lab14.Entities.PhoneFactory.*;
 
 /*
 What i need fix:
@@ -36,7 +35,7 @@ What i need fix:
 6. Add copy constructor to all classes
  */
 
-public class Lab13 {
+public class Lab14 {
     public static void main(String[] args) {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;
@@ -58,7 +57,7 @@ public class Lab13 {
             System.out.println("1. Search phone by");
             System.out.println("2. Create new phone");
             System.out.println("3. Show all phones");
-            System.out.println("4. Show all phones sort by price");
+            System.out.println("4. Show all phones sort by");
             System.out.println("5. Exit");
             System.out.print("\nChoose action: ");
             action = setIntWithValidation();
@@ -149,29 +148,24 @@ public class Lab13 {
                     }
                 }
                 case 4 -> {
-                    System.out.println("\t\t1. Price");
-                    System.out.println("\t\t2. Brand");
-                    System.out.println("\t\t3. RAM count");
-                    System.out.println("\t\t4. Exit");
+                    System.out.println("\t1. Price");
+                    System.out.println("\t2. Brand");
+                    System.out.println("\t3. RAM count");
+                    System.out.println("\t4. Exit");
 
                     int criteria = setIntWithValidation();
                     while (criteria < 1 || criteria > 4) {
                         System.out.println("Pls enter 1-4 for sort parameter");
                         criteria = setIntWithValidation();
                     }
+
+                    System.out.println("\nList of phones sorted:\n");
                     switch (criteria) {
-                        case  1 -> {
-
-
-
-                        }
-                        case  2 -> {
-
-                        }
-                        case  3 -> {
-
-                        }
+                        case  1 -> store.sortByPrice().forEach(System.out::println);
+                        case  2 -> store.sortByBrand().forEach(System.out::println);
+                        case  3 -> store.sortByRAMCount().forEach(System.out::println);
                         case  4 -> System.out.println("Returning to menu...");
+                        default -> throw new IllegalStateException("Unexpected value: " + criteria);
                     }
                     /*ArrayList<Phone> listOfPhones = new ArrayList<>();
                     System.out.println("\nList of phones sorted:\n");

@@ -1,6 +1,6 @@
-package labs.lab13.Entities.Phones;
+package labs.lab14.Entities.Phones;
 
-import labs.lab13.Enums.ScreenResolution;
+import labs.lab14.Enums.ScreenResolution;
 
 /**
  * Represents a keypad phone, which is a subclass of {@link Phone}.

@@ -1,7 +1,7 @@
-package labs.lab13.Entities;
+package labs.lab14.Entities;
 
-import labs.lab13.Exceptions.NoPhonesAvailableException;
-import labs.lab13.Entities.Phones.Phone;
+import labs.lab14.Exceptions.NoPhonesAvailableException;
+import labs.lab14.Entities.Phones.Phone;
 
 import java.util.*;
 import java.util.Objects;
@@ -309,7 +309,7 @@ public class Store implements Cloneable{
         }
     }
 
-    public List<Phone> SortByPrice(){
+    public List<Phone> sortByPrice(){
         Comparator<Phone> priceComparator = new Comparator<Phone>() {
             @Override
             public int compare(Phone o1, Phone o2) {
@@ -326,7 +326,7 @@ public class Store implements Cloneable{
         return sortedPhonelist;
     }
 
-    public List<Phone> SortByBrand(){
+    public List<Phone> sortByBrand(){
         Comparator<Phone> brandComparator = new Comparator<Phone>() {
             @Override
             public int compare(Phone o1, Phone o2) {
@@ -343,7 +343,7 @@ public class Store implements Cloneable{
         return sortedPhonelist;
     }
 
-    public List<Phone> SortByRAMCount(){
+    public List<Phone> sortByRAMCount(){
         Comparator<Phone> RAMComparator = new Comparator<Phone>() {
             @Override
             public int compare(Phone o1, Phone o2) {
