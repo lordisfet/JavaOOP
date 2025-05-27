@@ -309,52 +309,79 @@ public class Store implements Cloneable{
         }
     }
 
-    public List<Phone> sortByPrice(){
-        Comparator<Phone> priceComparator = new Comparator<Phone>() {
-            @Override
-            public int compare(Phone o1, Phone o2) {
-                Objects.requireNonNull(o1);
-                Objects.requireNonNull(o2);
-                return Double.compare(o1.getPrice(), o2.getPrice());
-            }
+    /**
+     * Sorts the list of phones by price in ascending order.
+     * <p>
+     * This method creates a new sorted list of cloned phone objects from the inventory.
+     * A comparator is used to compare phone prices to ensure proper ordering.
+     * </p>
+     * <p>
+     * If any phone is {@code null}, {@link Objects#requireNonNull(Object)} will throw a {@link NullPointerException}.
+     * </p>
+     *
+     * @return a sorted list of phones by price
+     */
+    public List<Phone> sortByPrice() {
+        Comparator<Phone> priceComparator = (o1, o2) -> {
+            Objects.requireNonNull(o1);
+            Objects.requireNonNull(o2);
+            return Double.compare(o1.getPrice(), o2.getPrice());
         };
         ArrayList<Phone> sortedPhonelist = new ArrayList<>();
         for (InventoryEntry phone : phones) {
-            sortedPhonelist.add(phone.getPhone().clone());
+            sortedPhonelist.add(phone.getPhone().clone()); // Cloning each phone to avoid modifying originals
         }
         sortedPhonelist.sort(priceComparator);
         return sortedPhonelist;
     }
 
-    public List<Phone> sortByBrand(){
-        Comparator<Phone> brandComparator = new Comparator<Phone>() {
-            @Override
-            public int compare(Phone o1, Phone o2) {
-                Objects.requireNonNull(o1);
-                Objects.requireNonNull(o2);
-                return CharSequence.compare(o1.getBrand(), o2.getBrand());
-            }
+    /**
+     * Sorts the list of phones by brand name in alphabetical order.
+     * <p>
+     * This method creates a new sorted list of cloned phone objects from the inventory.
+     * A comparator is used to compare brand names lexicographically using {@link CharSequence#compare(CharSequence, CharSequence)}.
+     * </p>
+     * <p>
+     * If any phone is {@code null}, {@link Objects#requireNonNull(Object)} will throw a {@link NullPointerException}.
+     * </p>
+     *
+     * @return a sorted list of phones by brand name
+     */
+    public List<Phone> sortByBrand() {
+        Comparator<Phone> brandComparator = (o1, o2) -> {
+            Objects.requireNonNull(o1);
+            Objects.requireNonNull(o2);
+            return CharSequence.compare(o1.getBrand(), o2.getBrand());
         };
         ArrayList<Phone> sortedPhonelist = new ArrayList<>();
         for (InventoryEntry phone : phones) {
-            sortedPhonelist.add(phone.getPhone().clone());
+            sortedPhonelist.add(phone.getPhone().clone()); // Cloning each phone to avoid modifying originals
         }
         sortedPhonelist.sort(brandComparator);
         return sortedPhonelist;
     }
 
-    public List<Phone> sortByRAMCount(){
-        Comparator<Phone> RAMComparator = new Comparator<Phone>() {
-            @Override
-            public int compare(Phone o1, Phone o2) {
-                Objects.requireNonNull(o1);
-                Objects.requireNonNull(o2);
-                return Integer.compare(o1.getRamAmount(), o2.getRamAmount());
-            }
+    /**
+     * Sorts the list of phones by RAM capacity in ascending order.
+     * <p>
+     * This method creates a new sorted list of cloned phone objects from the inventory.
+     * A comparator is used to compare RAM capacities using {@link Integer#compare(int, int)}.
+     * </p>
+     * <p>
+     * If any phone is {@code null}, {@link Objects#requireNonNull(Object)} will throw a {@link NullPointerException}.
+     * </p>
+     *
+     * @return a sorted list of phones by RAM count
+     */
+    public List<Phone> sortByRAMCount() {
+        Comparator<Phone> RAMComparator = (o1, o2) -> {
+            Objects.requireNonNull(o1);
+            Objects.requireNonNull(o2);
+            return Integer.compare(o1.getRamAmount(), o2.getRamAmount());
         };
         ArrayList<Phone> sortedPhonelist = new ArrayList<>();
         for (InventoryEntry phone : phones) {
-            sortedPhonelist.add(phone.getPhone().clone());
+            sortedPhonelist.add(phone.getPhone().clone()); // Cloning each phone to avoid modifying originals
         }
         sortedPhonelist.sort(RAMComparator);
         return sortedPhonelist;

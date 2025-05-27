@@ -2,12 +2,12 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №13
- * Час виконання: 20 хвилин
+ * Лабораторна:   №14
+ * Час виконання: 30 хвилин
  *
  * Опис:
- * Зробити батьківський клас абстрактним, реалізувати в ньому інтерфейс Comparable.
- * Додати меню до головного меню для виводу відсортованих даних.
+ * Додати до меню можливість виведення даних в відсортованому варіанті по деяким критеріям.
+ * Для цього використати анонімний внутрішній клас та реалізувати інтерфейс Comparator.
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
@@ -40,7 +40,7 @@ public class Lab14 {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;
         int action;
-        String fileName = "src/labs/lab13/Data/input.txt";
+        String fileName = "src/labs/lab14/Data/input.txt";
 
         try {
             InitialFile file = new InitialFile(fileName);
@@ -153,9 +153,11 @@ public class Lab14 {
                     System.out.println("\t3. RAM count");
                     System.out.println("\t4. Exit");
 
+                    System.out.print("\nCriteria for sort: ");
                     int criteria = setIntWithValidation();
                     while (criteria < 1 || criteria > 4) {
                         System.out.println("Pls enter 1-4 for sort parameter");
+                        System.out.print("\nCriteria for sort: ");
                         criteria = setIntWithValidation();
                     }
 
@@ -167,18 +169,6 @@ public class Lab14 {
                         case  4 -> System.out.println("Returning to menu...");
                         default -> throw new IllegalStateException("Unexpected value: " + criteria);
                     }
-                    /*ArrayList<Phone> listOfPhones = new ArrayList<>();
-                    System.out.println("\nList of phones sorted:\n");
-                    try {
-                        for (InventoryEntry phone : store.getAll()) {
-                            listOfPhones.add(phone.getPhone());
-                        }
-                        Collections.sort(listOfPhones);
-                    } catch (Exception e) {
-                        System.out.println("Exception" + e.getMessage());
-                    }
-
-                    listOfPhones.forEach(System.out::println);*/
                 }
                 case 5 -> {
                     System.out.println("Exiting...");
