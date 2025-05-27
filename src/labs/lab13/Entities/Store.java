@@ -3,7 +3,7 @@ package labs.lab13.Entities;
 import labs.lab13.Exceptions.NoPhonesAvailableException;
 import labs.lab13.Entities.Phones.Phone;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Objects;
 
 /**
@@ -309,4 +309,54 @@ public class Store implements Cloneable{
         }
     }
 
+    public List<Phone> SortByPrice(){
+        Comparator<Phone> priceComparator = new Comparator<Phone>() {
+            @Override
+            public int compare(Phone o1, Phone o2) {
+                Objects.requireNonNull(o1);
+                Objects.requireNonNull(o2);
+                return Double.compare(o1.getPrice(), o2.getPrice());
+            }
+        };
+        ArrayList<Phone> sortedPhonelist = new ArrayList<>();
+        for (InventoryEntry phone : phones) {
+            sortedPhonelist.add(phone.getPhone().clone());
+        }
+        sortedPhonelist.sort(priceComparator);
+        return sortedPhonelist;
+    }
+
+    public List<Phone> SortByBrand(){
+        Comparator<Phone> brandComparator = new Comparator<Phone>() {
+            @Override
+            public int compare(Phone o1, Phone o2) {
+                Objects.requireNonNull(o1);
+                Objects.requireNonNull(o2);
+                return CharSequence.compare(o1.getBrand(), o2.getBrand());
+            }
+        };
+        ArrayList<Phone> sortedPhonelist = new ArrayList<>();
+        for (InventoryEntry phone : phones) {
+            sortedPhonelist.add(phone.getPhone().clone());
+        }
+        sortedPhonelist.sort(brandComparator);
+        return sortedPhonelist;
+    }
+
+    public List<Phone> SortByRAMCount(){
+        Comparator<Phone> RAMComparator = new Comparator<Phone>() {
+            @Override
+            public int compare(Phone o1, Phone o2) {
+                Objects.requireNonNull(o1);
+                Objects.requireNonNull(o2);
+                return Integer.compare(o1.getRamAmount(), o2.getRamAmount());
+            }
+        };
+        ArrayList<Phone> sortedPhonelist = new ArrayList<>();
+        for (InventoryEntry phone : phones) {
+            sortedPhonelist.add(phone.getPhone().clone());
+        }
+        sortedPhonelist.sort(RAMComparator);
+        return sortedPhonelist;
+    }
 }

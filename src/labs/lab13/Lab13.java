@@ -122,9 +122,7 @@ public class Lab13 {
                                         valueOfCriteria + "\" not exist");
                             }
                         }
-                        case 4 -> {
-                            System.out.println("Returning to menu...");
-                        }
+                        case 4 -> System.out.println("Returning to menu...");
                     }
                 }
                 case 2 -> {
@@ -151,7 +149,31 @@ public class Lab13 {
                     }
                 }
                 case 4 -> {
-                    ArrayList<Phone> listOfPhones = new ArrayList<>();
+                    System.out.println("\t\t1. Price");
+                    System.out.println("\t\t2. Brand");
+                    System.out.println("\t\t3. RAM count");
+                    System.out.println("\t\t4. Exit");
+
+                    int criteria = setIntWithValidation();
+                    while (criteria < 1 || criteria > 4) {
+                        System.out.println("Pls enter 1-4 for sort parameter");
+                        criteria = setIntWithValidation();
+                    }
+                    switch (criteria) {
+                        case  1 -> {
+
+
+
+                        }
+                        case  2 -> {
+
+                        }
+                        case  3 -> {
+
+                        }
+                        case  4 -> System.out.println("Returning to menu...");
+                    }
+                    /*ArrayList<Phone> listOfPhones = new ArrayList<>();
                     System.out.println("\nList of phones sorted:\n");
                     try {
                         for (InventoryEntry phone : store.getAll()) {
@@ -162,7 +184,7 @@ public class Lab13 {
                         System.out.println("Exception" + e.getMessage());
                     }
 
-                    listOfPhones.forEach(System.out::println);
+                    listOfPhones.forEach(System.out::println);*/
                 }
                 case 5 -> {
                     System.out.println("Exiting...");
