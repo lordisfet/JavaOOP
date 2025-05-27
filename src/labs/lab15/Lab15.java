@@ -2,12 +2,11 @@
  * Виконав:       Савченко Максим
  * Група:         ІН-22-1
  * Дисципліна:    Об'єктно-орієнтоване програмування (Java)
- * Лабораторна:   №14
- * Час виконання: 30 хвилин
+ * Лабораторна:   №15
+ * Час виконання: 1 хвилина
  *
  * Опис:
- * Додати до меню можливість виведення даних в відсортованому варіанті по деяким критеріям.
- * Для цього використати анонімний внутрішній клас та реалізувати інтерфейс Comparator.
+ * Замінити реалізацію компараторів з анонімних класів на лямда вирази
  *
  * Це моя власна лабораторна робота та виконана вона без недозволеної допомоги
  */
@@ -21,6 +20,7 @@ import labs.lab15.Entities.InitialFile;
 import java.io.IOException;
 import java.util.*;
 
+import labs.lab15.Entities.Phones.Phone;
 import labs.lab15.Entities.Store;
 
 import static labs.lab15.Entities.PhoneFactory.*;
@@ -40,7 +40,7 @@ public class Lab15 {
         PhoneFactory factory = new PhoneFactory();
         Store store = null;
         int action;
-        String fileName = "src/labs/lab14/Data/input.txt";
+        String fileName = "src/labs/lab15/Data/input.txt";
 
         try {
             InitialFile file = new InitialFile(fileName);
@@ -126,9 +126,17 @@ public class Lab15 {
                 }
                 case 2 -> {
                     try {
-                        InventoryEntry newPhone = factory.createPhoneFromInput();
+                        Phone newPhone = factory.createPhoneFromInput();
+                        System.out.print("Enter amount of phones: ");
+                        int amount = setIntWithValidation();
+                        while (amount <= 0) {
+                            System.out.println("Amount of phones will be need more then 0");
+                            System.out.print("Enter amount of phones: ");
+                            amount = setIntWithValidation();
+                        }
+
                         if (newPhone != null) {
-                            store.addNewPhone(newPhone);
+                            store.addNewPhone(newPhone, amount);
                             System.out.println("\nObj was been added");
                         } else {
                             System.out.println("Returning to menu...");

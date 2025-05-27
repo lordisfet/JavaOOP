@@ -175,17 +175,19 @@ public class Store implements Cloneable{
      * @param phone the {@link InventoryEntry} to be added to the store
      * @throws IllegalArgumentException if the provided {@code InventoryEntry} is {@code null} or its amount is negative
      */
-    public void addNewPhone(InventoryEntry phone) {
-        if (phone != null && phone.getAmount() > 0) {
+    public void addNewPhone(Phone phone, Integer count) {
+        if (phone != null && count > 0) {
             InventoryEntry temp = samePhoneInStore(phone);
             if (temp != null) {
-                temp.setAmount(temp.getAmount() + phone.getAmount());
+                temp.setAmount(temp.getAmount() + count);
                 return;
             }
-            phones.add(phone);
+            phones.add(new InventoryEntry(phone.clone(), count));
         } else {
             throw new IllegalArgumentException("Phone can`t be null or amount can`t be less then 0");
         }
+
+        // two paraments in method, add copy to arraylist
     }
 
     /**
@@ -197,9 +199,9 @@ public class Store implements Cloneable{
      * @param phone an {@link InventoryEntry} containing the {@link Phone} to search for
      * @return the matching {@link InventoryEntry} from the store's inventory if found; {@code null} otherwise
      */
-    private InventoryEntry samePhoneInStore(InventoryEntry phone) {
+    private InventoryEntry samePhoneInStore(Phone phone) {
         for (InventoryEntry element : phones) {
-            if (phone.getPhone().equals(element.getPhone())) {
+            if (phone.equals(element.getPhone())) {
                 return element;
             }
         }

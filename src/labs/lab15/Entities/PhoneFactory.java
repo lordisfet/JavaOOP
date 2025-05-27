@@ -28,7 +28,7 @@ public class PhoneFactory {
      * @return a new {@code InventoryEntry} containing the created {@link Phone} and its amount, or {@code null} if the user provided an empty type
      * @throws IllegalArgumentException if the phone type is unrecognized or invalid
      */
-    public InventoryEntry createPhoneFromInput() {
+    public Phone createPhoneFromInput() {
         String type = setTypeWithValidation();
         if (type.isEmpty()) return null; // Return to the main menu if no type is provided
 
@@ -74,10 +74,7 @@ public class PhoneFactory {
             default -> throw new IllegalArgumentException("Type of phone does not exist");
         };
 
-        System.out.print("Enter amount of phones: ");
-        int amount = setIntWithValidation();
-
-        return new InventoryEntry(newPhone, amount);
+        return newPhone;
     }
 
     /**
